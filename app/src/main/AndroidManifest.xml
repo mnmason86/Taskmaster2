@@ -14,10 +14,10 @@
         android:theme="@style/Theme.Taskmaster"
         tools:targetApi="31">
         <activity
-            android:name=".AllTask"
+            android:name=".AllTaskActivity"
             android:exported="false" />
         <activity
-            android:name=".AddTask"
+            android:name=".AddTaskActivity"
             android:exported="false" />
         <activity
             android:name=".MainActivity"

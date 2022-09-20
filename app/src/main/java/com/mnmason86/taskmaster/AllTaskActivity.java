@@ -7,17 +7,17 @@ import android.widget.Button;
 import androidx.appcompat.app.AppCompatActivity;
 
 
-public class AllTask extends AppCompatActivity {
+public class AllTaskActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_all_task);
 
-        Button goToMainActivityButton = AllTask.this.findViewById(R.id.allTasksBackButton);
+        Button goToMainActivityButton = AllTaskActivity.this.findViewById(R.id.allTasksBackButton);
 
         goToMainActivityButton.setOnClickListener(view -> {
-            Intent goToActivityMain = new Intent(AllTask.this, MainActivity.class);
+            Intent goToActivityMain = new Intent(AllTaskActivity.this, MainActivity.class);
             startActivity(goToActivityMain);
         });
     }
