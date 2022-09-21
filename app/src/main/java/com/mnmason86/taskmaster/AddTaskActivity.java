@@ -9,7 +9,7 @@ import android.widget.Button;
 import android.widget.Toast;
 
 
-public class AddTask extends AppCompatActivity {
+public class AddTaskActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -17,7 +17,7 @@ public class AddTask extends AppCompatActivity {
         setContentView(R.layout.activity_add_task);
 
 
-        Button addTaskSubButton = AddTask.this.findViewById(R.id.addTaskSubmitButton);
+        Button addTaskSubButton = AddTaskActivity.this.findViewById(R.id.addTaskSubmitButton);
         addTaskSubButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {

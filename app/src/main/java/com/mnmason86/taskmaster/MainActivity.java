@@ -15,18 +15,24 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+        createAddTaskButton();
+        createAllTaskButton();
+    }
+
+    private void createAddTaskButton() {
         Button addTaskButton = MainActivity.this.findViewById(R.id.mainActivityAddTaskButton);
 
         addTaskButton.setOnClickListener(view -> {
-            Intent goToAddTaskPage = new Intent(MainActivity.this, AddTask.class);
+            Intent goToAddTaskPage = new Intent(MainActivity.this, AddTaskActivity.class);
             startActivity(goToAddTaskPage);
-
         });
+    }
 
+    private void createAllTaskButton(){
         Button allTaskButton = MainActivity.this.findViewById(R.id.mainActivityAllTasksButton);
 
         allTaskButton.setOnClickListener(view -> {
-            Intent goToAllTaskPage = new Intent(MainActivity.this, AllTask.class);
+            Intent goToAllTaskPage = new Intent(MainActivity.this, AllTaskActivity.class);
             startActivity(goToAllTaskPage);
         });
     }
