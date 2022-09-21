@@ -72,6 +72,7 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="24dp"
         android:layout_marginBottom="100dp"
+        android:backgroundTint="@color/maroon"
         android:text="Task1"
         app:layout_constraintBottom_toTopOf="@+id/imageView2"
         app:layout_constraintStart_toStartOf="parent" />
@@ -82,6 +83,7 @@
         android:layout_height="wrap_content"
         android:layout_marginEnd="24dp"
         android:layout_marginBottom="100dp"
+        android:backgroundTint="@color/maroon"
         android:text="Task3"
         app:layout_constraintBottom_toTopOf="@+id/imageView2"
         app:layout_constraintEnd_toEndOf="parent" />
@@ -93,6 +95,7 @@
         android:layout_marginStart="24dp"
         android:layout_marginEnd="24dp"
         android:layout_marginBottom="100dp"
+        android:backgroundTint="@color/maroon"
         android:text="Task2"
         app:layout_constraintBottom_toTopOf="@+id/imageView2"
         app:layout_constraintEnd_toEndOf="parent"
