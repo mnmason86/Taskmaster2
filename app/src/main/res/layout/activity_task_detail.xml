@@ -4,14 +4,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:outlineProvider="paddedBounds"
-    android:overScrollMode="ifContentScrolls"
-    android:paddingStart="@dimen/material_emphasis_medium"
-    android:paddingLeft="@dimen/material_emphasis_medium"
-    android:paddingTop="@dimen/material_emphasis_medium"
-    android:paddingEnd="@dimen/material_emphasis_medium"
-    android:paddingRight="@dimen/material_emphasis_medium"
-    android:paddingBottom="@dimen/material_emphasis_medium"
+    android:outlineProvider="none"
+    android:overScrollMode="never"
     tools:context=".TaskDetailActivity">
 
     <TextView
@@ -26,14 +20,13 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
-        android:id="@+id/taskDetailDescriptionTextView"
+        android:id="@+id/taskDetailDescriptionPlainText"
         android:layout_width="238dp"
         android:layout_height="268dp"
         android:layout_marginTop="100dp"
-        android:text="TextView"
+        android:text="We found them. The Knights Who Say Ni demand a sacrifice! Listen. Strange women lying in ponds distributing swords is no basis for a system of government. Supreme executive power derives from a mandate from the masses, not from some farcical aquatic ceremony.  "
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.497"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/taskDetailTitleTextView"
-        tools:text="@tools:sample/lorem/random" />
+        app:layout_constraintTop_toBottomOf="@+id/taskDetailTitleTextView" />
 </androidx.constraintlayout.widget.ConstraintLayout>
