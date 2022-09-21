@@ -5,14 +5,18 @@
 ### Features
 
 Create a new app with three pages
-- Main Activity
-  - Contains a plain text heading, an image, a button which redirects to the Add Task activity, and a button which redirects to the All Tasks activity
+
+**Main Activity**
+
+Contains a plain text heading, an image, a button which redirects to the Add Task activity, and a button which redirects to the All Tasks activity
     
-- Add Task
-  - Contains a plain text heading, an input for the task's title, an input for the task's description/body, and a submit button which, when clicked, renders a 'submitted' message.
+**Add Task**
+
+Contains a plain text heading, an input for the task's title, an input for the task's description/body, and a submit button which, when clicked, renders a 'submitted' message.
   
-- All Tasks
-  - Contains a plan text heading, an image, and a back button which redirects to the Main Activity view.
+**All Tasks**
+
+Contains a plan text heading, an image, and a back button which redirects to the Main Activity view.
 
 ### Screenshots
 
@@ -21,3 +25,34 @@ Create a new app with three pages
 ![Add Task Page](screenshots/taskmaster_addtasks.png)
 
 ![All Tasks Page](screenshots/taskmaster_alltasks.png)
+
+## Lab 27
+
+### Features
+
+**Task Detail Page**
+
+Create a Task Detail page. It should have a title at the top of the page, and a Lorem Ipsum description.
+
+**Settings Page**
+
+Create a Settings page. It should allow users to enter their username and hit save.
+
+**Home Page (Main Activity)**
+
+The main page contains three different buttons with hardcoded task titles. When a user taps one of the titles, it goes to the Task Detail page, and the title at the top of the page match the task title that was tapped on the previous page.
+
+The home page also contains a button to visit the Settings page, and once the user has entered their username, it displays “{username}’s tasks” above the three task buttons.
+
+### Screenshots
+
+![Home Page](screenshots/taskmaster_home2.png)
+
+![Settings Page](screenshots/taskmaster_settings2.png)
+
+![Task Details Page](screenshots/taskmaster_task_details2.png)
+
+### Attributions
+
+Alex White - demo code
+Stanley Wilder - collaboration
