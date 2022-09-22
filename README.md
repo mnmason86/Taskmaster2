@@ -1,6 +1,6 @@
 # Taskmaster
 
-## Lab 26
+## Lab 26 9/19/22
 
 ### Features
 
@@ -26,7 +26,7 @@ Contains a plan text heading, an image, and a back button which redirects to the
 
 ![All Tasks Page](screenshots/taskmaster_alltasks.png)
 
-## Lab 27
+## Lab 27 9/20/22
 
 ### Features
 
@@ -51,6 +51,27 @@ The home page also contains a button to visit the Settings page, and once the us
 ![Settings Page](screenshots/taskmaster_settings2.png)
 
 ![Task Details Page](screenshots/taskmaster_task_details2.png)
+
+## Lab 28 9/21/22
+
+### Features
+
+**Task Class**
+
+Task class contains a name, body, and a state ("new", "assigned", "in progress" or "complete).
+
+**Home Page**
+
+Refactored home page to use a RecyclerView for displaying Task data. Data is hardcoded.
+Created TaskListRecycleViewAdapter that displays data from the hardcoded list of tasks.
+When a task is tapped from the RecyclerView display, the Task Detail page is launched, with the name of the task displayed.
+
+### Screenshots
+
+![Home Page](screenshots/taskmaster_home3.png)
+
+![Task Details Page](screenshots/taskmaster_task_details3.png)
+
 
 ### Attributions
 
