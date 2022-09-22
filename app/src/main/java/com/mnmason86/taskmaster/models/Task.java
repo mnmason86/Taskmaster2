@@ -1,16 +1,34 @@
 package com.mnmason86.taskmaster.models;
 
+import androidx.annotation.NonNull;
+import androidx.room.PrimaryKey;
+
+import java.util.Date;
+
+@Entity
 public class Task {
 
+    @PrimaryKey(autoGenerate = true)
+    public Long id;
     private String name;
     private String body;
-    private String state;
+    private String taskState;
+    private java.util.Date dateCreated;
 
-    public Task(String name, String body, String state) {
+    public Task(String name, String body, String taskState, Date dateCreated) {
         this.name = name;
         this.body = body;
-        this.state = "Status: " + state;
+        this.taskState = "Status: " + taskState;
+        this.dateCreated = dateCreated;
     }
+
+    public Task(){
+    }
+
+    public Long getId() {
+        return id;
+    }
+
 
     public String getName() {
         return name;
@@ -28,11 +46,54 @@ public class Task {
         this.body = body;
     }
 
-    public String getState() {
-        return state;
+    public String getTaskState() {
+        return taskState;
     }
 
-    public void setState(String state) {
-        this.state = state;
+    public void setTaskState(String taskState) {
+        this.taskState = taskState;
+    }
+
+    public Date getDateCreated() {
+        return dateCreated;
+    }
+
+    public void setDateCreated(Date dateCreated) {
+        this.dateCreated = dateCreated;
+    }
+
+    public enum TaskStateEnum {
+        NEW("new"),
+        ASSIGNED("assigned"),
+        IN_PROGRESS("in progress"),
+        COMPLETED("completed");
+
+        private final String taskState;
+
+        TaskStateEnum(String taskState){
+            this.taskState = taskState;
+        }
+
+        public String getTaskState() {
+            return taskState;
+        }
+
+        public static TaskStateEnum fromString(String taskStateOption){
+            for (TaskStateEnum state : TaskStateEnum.values()){
+                if(state.taskState.equals(taskStateOption)){
+                    return state;
+                }
+            }
+            return null;
+        }
+
+        @NonNull
+        @Override
+        public String toString(){
+            if(taskState == null){
+                return "not assigned";
+            }
+            return taskState;
+        }
     }
 }
