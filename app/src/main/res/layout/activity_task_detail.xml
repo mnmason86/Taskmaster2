@@ -6,7 +6,7 @@
     android:layout_height="match_parent"
     android:outlineProvider="none"
     android:overScrollMode="never"
-    tools:context=".TaskDetailActivity">
+    tools:context=".activities.TaskDetailActivity">
 
     <TextView
         android:id="@+id/taskDetailTitleTextView"

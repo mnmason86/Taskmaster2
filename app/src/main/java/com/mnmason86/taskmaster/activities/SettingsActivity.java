@@ -1,14 +1,15 @@
-package com.mnmason86.taskmaster;
+package com.mnmason86.taskmaster.activities;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
+
+import com.mnmason86.taskmaster.R;
 
 public class SettingsActivity extends AppCompatActivity {
     SharedPreferences sharedPreferences;

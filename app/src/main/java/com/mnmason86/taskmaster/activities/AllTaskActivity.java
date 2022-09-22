@@ -1,10 +1,12 @@
-package com.mnmason86.taskmaster;
+package com.mnmason86.taskmaster.activities;
 
 import android.content.Intent;
 import android.os.Bundle;
 import android.widget.Button;
 
 import androidx.appcompat.app.AppCompatActivity;
+
+import com.mnmason86.taskmaster.R;
 
 
 public class AllTaskActivity extends AppCompatActivity {

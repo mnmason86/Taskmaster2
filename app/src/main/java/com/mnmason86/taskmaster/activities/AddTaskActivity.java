@@ -1,4 +1,4 @@
-package com.mnmason86.taskmaster;
+package com.mnmason86.taskmaster.activities;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -7,6 +7,8 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.Toast;
+
+import com.mnmason86.taskmaster.R;
 
 
 public class AddTaskActivity extends AppCompatActivity {
