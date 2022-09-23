@@ -1,6 +1,7 @@
 package com.mnmason86.taskmaster.models;
 
 import androidx.annotation.NonNull;
+import androidx.room.Entity;
 import androidx.room.PrimaryKey;
 
 import java.util.Date;
@@ -12,13 +13,13 @@ public class Task {
     public Long id;
     private String name;
     private String body;
-    private String taskState;
+    private TaskStateEnum taskState;
     private java.util.Date dateCreated;
 
-    public Task(String name, String body, String taskState, Date dateCreated) {
+    public Task(String name, String body, TaskStateEnum taskState, Date dateCreated) {
         this.name = name;
         this.body = body;
-        this.taskState = "Status: " + taskState;
+        this.taskState = taskState;
         this.dateCreated = dateCreated;
     }
 
@@ -28,7 +29,6 @@ public class Task {
     public Long getId() {
         return id;
     }
-
 
     public String getName() {
         return name;
@@ -46,11 +46,11 @@ public class Task {
         this.body = body;
     }
 
-    public String getTaskState() {
+    public TaskStateEnum getTaskState() {
         return taskState;
     }
 
-    public void setTaskState(String taskState) {
+    public void setTaskState(TaskStateEnum taskState) {
         this.taskState = taskState;
     }
 

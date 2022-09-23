@@ -27,7 +27,7 @@ public interface TaskDao {
 
     //Order by ascending
 
-    @Query("SELECT * FROM Task ORDER BY state ASC")
-    public List<Task> findAllSortedByState();
+    @Query("SELECT * FROM Task ORDER BY dateCreated ASC")
+    public List<Task> findAllSortedByDate();
 
 }
