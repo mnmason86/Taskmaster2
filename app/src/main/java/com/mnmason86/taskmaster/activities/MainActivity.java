@@ -3,6 +3,7 @@ package com.mnmason86.taskmaster.activities;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
+import androidx.room.Room;
 
 import android.content.Intent;
 import android.content.SharedPreferences;
@@ -13,6 +14,7 @@ import android.widget.TextView;
 
 import com.mnmason86.taskmaster.R;
 import com.mnmason86.taskmaster.adapters.TaskListRecyclerViewAdapter;
+import com.mnmason86.taskmaster.database.ToDoDatabase;
 import com.mnmason86.taskmaster.models.Task;
 
 import java.util.ArrayList;
@@ -20,8 +22,12 @@ import java.util.List;
 
 
 public class MainActivity extends AppCompatActivity {
+    public static final String DATABASE_NAME = "taskmasterDb";
     SharedPreferences sharedPreferences;
     public static final String TASK_NAME_EXTRA_TAG = "taskName";
+    ToDoDatabase toDoDatabase;
+    List<Task> taskList = null;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -29,6 +35,17 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
         sharedPreferences = PreferenceManager.getDefaultSharedPreferences(this);
+
+        toDoDatabase = Room.databaseBuilder(
+                //put in separate method and call
+                getApplicationContext(),
+                ToDoDatabase.class,
+                DATABASE_NAME)
+                .allowMainThreadQueries()
+                .fallbackToDestructiveMigration()
+                .build(); //not implicit, MUST tell to build
+
+        taskList = toDoDatabase.taskDao().findAll();
 
         createAddTaskButton();
         createAllTaskButton();
@@ -43,10 +60,6 @@ public class MainActivity extends AppCompatActivity {
 
         List<Task> taskList = new ArrayList<>();
 
-        taskList.add(new Task("Laundry", "Wash, dry, fold, and put away laundry", "in progress"));
-        taskList.add(new Task("Dishes", "Put away clean dishes, re-load dishwasher", "assigned"));
-        taskList.add(new Task("Mail", "Check mail", "complete"));
-
         TaskListRecyclerViewAdapter adapter = new TaskListRecyclerViewAdapter(taskList, this);
         taskRecyclerView.setAdapter(adapter);
     }
@@ -57,6 +70,11 @@ public class MainActivity extends AppCompatActivity {
         String userName = sharedPreferences.getString(SettingsActivity.USER_NAME_TAG, "No username");
         TextView userNameEdited = findViewById(R.id.activityMainUsernameTextView);
         userNameEdited.setText(userName + "'s Tasks");
+
+        taskList.clear();
+        taskList.addAll(toDoDatabase.taskDao().findAll());
+
+        setUpTaskRecyclerView();
     }
 
     private void createAddTaskButton() {
@@ -76,39 +94,6 @@ public class MainActivity extends AppCompatActivity {
             startActivity(goToAllTaskPage);
         });
     }
-
-//    private void createTaskOneButton(){
-//        Button taskOneButton = MainActivity.this.findViewById(R.id.mainActivityTaskOneButton);
-//
-//        taskOneButton.setOnClickListener(view -> {
-//            Intent goToTaskDetailPage = new Intent(MainActivity.this, TaskDetailActivity.class);
-//            String buttonText = ((Button)view).getText().toString();
-//            goToTaskDetailPage.putExtra("taskButtonName", buttonText);
-//            startActivity(goToTaskDetailPage);
-//        });
-//    }
-//
-//    private void createTaskTwoButton(){
-//        Button taskTwoButton = MainActivity.this.findViewById(R.id.mainActivityTaskTwoButton);
-//
-//        taskTwoButton.setOnClickListener(view -> {
-//            Intent goToTaskDetailPage = new Intent(MainActivity.this, TaskDetailActivity.class);
-//            String buttonText = ((Button)view).getText().toString();
-//            goToTaskDetailPage.putExtra("taskButtonName", buttonText);
-//            startActivity(goToTaskDetailPage);
-//        });
-//    }
-//
-//    private void createTaskThreeButton(){
-//        Button taskThreeButton = MainActivity.this.findViewById(R.id.mainActivityTaskThreeButton);
-//
-//        taskThreeButton.setOnClickListener(view -> {
-//            Intent goToTaskDetailPage = new Intent(MainActivity.this, TaskDetailActivity.class);
-//            String buttonText = ((Button)view).getText().toString();
-//            goToTaskDetailPage.putExtra("taskButtonName", buttonText);
-//            startActivity(goToTaskDetailPage);
-//        });
-//    }
 
     private void createSettingsButton(){
         Button settingsButton = MainActivity.this.findViewById(R.id.mainActivitySettingsButton);
