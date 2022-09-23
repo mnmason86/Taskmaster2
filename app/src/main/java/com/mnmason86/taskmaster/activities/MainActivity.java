@@ -23,8 +23,8 @@ import java.util.List;
 
 public class MainActivity extends AppCompatActivity {
     public static final String DATABASE_NAME = "taskmasterDb";
-    SharedPreferences sharedPreferences;
     public static final String TASK_NAME_EXTRA_TAG = "taskName";
+    SharedPreferences sharedPreferences;
     ToDoDatabase toDoDatabase;
     List<Task> taskList = null;
 
@@ -47,10 +47,10 @@ public class MainActivity extends AppCompatActivity {
 
         taskList = toDoDatabase.taskDao().findAll();
 
+        setUpTaskRecyclerView();
         createAddTaskButton();
         createAllTaskButton();
         createSettingsButton();
-        setUpTaskRecyclerView();
     }
     private void setUpTaskRecyclerView(){
 
@@ -58,7 +58,7 @@ public class MainActivity extends AppCompatActivity {
         RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(this);
         taskRecyclerView.setLayoutManager(layoutManager);
 
-        List<Task> taskList = new ArrayList<>();
+        List<Task> taskList = toDoDatabase.taskDao().findAll();
 
         TaskListRecyclerViewAdapter adapter = new TaskListRecyclerViewAdapter(taskList, this);
         taskRecyclerView.setAdapter(adapter);
