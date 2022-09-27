@@ -8,6 +8,8 @@ import android.widget.TextView;
 
 import com.mnmason86.taskmaster.R;
 
+import org.w3c.dom.Text;
+
 public class TaskDetailActivity extends AppCompatActivity {
     SharedPreferences preferences;
 
@@ -24,5 +26,13 @@ public class TaskDetailActivity extends AppCompatActivity {
         String taskName = getIntent().getStringExtra("taskName");
         TextView taskNameEdited = findViewById(R.id.taskDetailTitleTextView);
         taskNameEdited.setText(taskName);
+
+        String taskBody = getIntent().getStringExtra("taskBody");
+        TextView taskBodyEdited = findViewById(R.id.taskDetailBodyPlainText);
+        taskBodyEdited.setText(taskBody);
+
+        String taskState = getIntent().getStringExtra("taskState");
+        TextView taskStateEdited = findViewById(R.id.taskDetailStateTextView);
+        taskStateEdited.setText(taskState);
     }
 }

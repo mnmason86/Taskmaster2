@@ -24,6 +24,8 @@ import java.util.List;
 public class MainActivity extends AppCompatActivity {
     public static final String DATABASE_NAME = "taskmasterDb";
     public static final String TASK_NAME_EXTRA_TAG = "taskName";
+    public static final String TASK_BODY_EXTRA_TAG = "taskBody";
+    public static final String TASK_STATE_EXTRA_TAG = "taskState";
     SharedPreferences sharedPreferences;
     ToDoDatabase toDoDatabase;
     List<Task> taskList = null;
