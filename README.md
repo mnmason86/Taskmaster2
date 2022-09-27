@@ -72,7 +72,7 @@ When a task is tapped from the RecyclerView display, the Task Detail page is lau
 
 ![Task Details Page](screenshots/taskmaster_task_details3.png)
 
-## Lab 28 9/21/22
+## Lab 29 9/22/22
 
 ### Features
 
@@ -82,18 +82,19 @@ Room set up in application. Task class is annotated as an entity.
 
 **Add Task Page**
 
-Accepts data from the form and populates to the database (unsure if working currently 9/22/22)
+Accepts data from the form and populates to the database
 
 **Home Page**
 
-Recycler View currently displays nothing (9/22/22)
+Recycler View displays all tasks with title, body, and state from database. (updated 9/26/22)
 
 **Task Detail Page**
 
-Will render the name, body, date, and state of a task that is added from the Add Task Page (not currently working 9/22/22)
+Renders the name, body, and state of a task that is added from the Add Task Page (updated 9/26/22)
 
 ### Screenshots
 
+![Task Details Page](screenshots/taskmaster_task_details4.png)
 
 ### Attributions
 
