@@ -6,10 +6,10 @@ import androidx.room.PrimaryKey;
 
 import java.util.Date;
 
-@Entity
+
 public class Task {
 
-    @PrimaryKey(autoGenerate = true)
+
     public Long id;
     private String name;
     private String body;

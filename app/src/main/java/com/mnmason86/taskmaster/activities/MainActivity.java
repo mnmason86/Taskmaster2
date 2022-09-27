@@ -14,20 +14,16 @@ import android.widget.TextView;
 
 import com.mnmason86.taskmaster.R;
 import com.mnmason86.taskmaster.adapters.TaskListRecyclerViewAdapter;
-import com.mnmason86.taskmaster.database.ToDoDatabase;
 import com.mnmason86.taskmaster.models.Task;
 
-import java.util.ArrayList;
 import java.util.List;
 
 
 public class MainActivity extends AppCompatActivity {
-    public static final String DATABASE_NAME = "taskmasterDb";
     public static final String TASK_NAME_EXTRA_TAG = "taskName";
     public static final String TASK_BODY_EXTRA_TAG = "taskBody";
     public static final String TASK_STATE_EXTRA_TAG = "taskState";
     SharedPreferences sharedPreferences;
-    ToDoDatabase toDoDatabase;
     List<Task> taskList = null;
 
 
@@ -37,17 +33,6 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
         sharedPreferences = PreferenceManager.getDefaultSharedPreferences(this);
-
-        toDoDatabase = Room.databaseBuilder(
-                //put in separate method and call
-                getApplicationContext(),
-                ToDoDatabase.class,
-                DATABASE_NAME)
-                .allowMainThreadQueries()
-                .fallbackToDestructiveMigration()
-                .build(); //not implicit, MUST tell to build
-
-        taskList = toDoDatabase.taskDao().findAll();
 
         setUpTaskRecyclerView();
         createAddTaskButton();
@@ -60,7 +45,7 @@ public class MainActivity extends AppCompatActivity {
         RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(this);
         taskRecyclerView.setLayoutManager(layoutManager);
 
-        List<Task> taskList = toDoDatabase.taskDao().findAll();
+       // List<Task> taskList = toDoDatabase.taskDao().findAll();
 
         TaskListRecyclerViewAdapter adapter = new TaskListRecyclerViewAdapter(taskList, this);
         taskRecyclerView.setAdapter(adapter);
@@ -74,7 +59,7 @@ public class MainActivity extends AppCompatActivity {
         userNameEdited.setText(userName + "'s Tasks");
 
         taskList.clear();
-        taskList.addAll(toDoDatabase.taskDao().findAll());
+       // taskList.addAll(toDoDatabase.taskDao().findAll());
 
         setUpTaskRecyclerView();
     }
