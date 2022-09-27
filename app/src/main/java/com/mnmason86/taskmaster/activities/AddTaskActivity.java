@@ -53,17 +53,17 @@ public class AddTaskActivity extends AppCompatActivity {
         Button addTaskSubmitButton = findViewById(R.id.addTaskSubmitButton);
         addTaskSubmitButton.setOnClickListener(view -> {
 
-        String taskTitle = ((EditText) findViewById(R.id.addTaskInputTitle)).getText().toString();
-        String taskBody = ((EditText) findViewById(R.id.addTaskInputBody)).getText().toString();
-        java.util.Date newDate = new Date();
-        Task.TaskStateEnum taskStateEnum = Task.TaskStateEnum.fromString(taskStateSpinner.getSelectedItem().toString());
+            String taskTitle = ((EditText) findViewById(R.id.addTaskInputTitle)).getText().toString();
+            String taskBody = ((EditText) findViewById(R.id.addTaskInputBody)).getText().toString();
+            java.util.Date newDate = new Date();
+            Task.TaskStateEnum taskStateEnum = Task.TaskStateEnum.fromString(taskStateSpinner.getSelectedItem().toString());
 
-        Task newTask = new Task(taskTitle, taskBody, taskStateEnum, newDate);
+            Task newTask = new Task(taskTitle, taskBody, taskStateEnum, newDate);
 
-        toDoDatabase.taskDao().insertTask(newTask);
+            toDoDatabase.taskDao().insertTask(newTask);
 
-        Intent goToMainActivity = new Intent(AddTaskActivity.this, MainActivity.class);
-        startActivity(goToMainActivity);
+            Intent goToMainActivity = new Intent(AddTaskActivity.this, MainActivity.class);
+            startActivity(goToMainActivity);
 
         });
     }

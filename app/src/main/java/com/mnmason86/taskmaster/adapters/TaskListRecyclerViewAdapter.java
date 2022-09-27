@@ -53,13 +53,14 @@ public class TaskListRecyclerViewAdapter extends RecyclerView.Adapter<TaskListRe
         taskViewHolder.setOnClickListener(view -> {
             Intent goToTaskDetailPage = new Intent(callingActivity, TaskDetailActivity.class);
             goToTaskDetailPage.putExtra(MainActivity.TASK_NAME_EXTRA_TAG, taskName);
+            goToTaskDetailPage.putExtra(MainActivity.TASK_BODY_EXTRA_TAG, taskBody);
+            goToTaskDetailPage.putExtra(MainActivity.TASK_STATE_EXTRA_TAG, taskState);
             callingActivity.startActivity(goToTaskDetailPage);
         });
     }
 
     @Override
     public int getItemCount() {
-
         return taskList.size();
     }
 

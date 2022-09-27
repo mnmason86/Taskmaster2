@@ -14,19 +14,32 @@
         android:layout_height="25dp"
         android:layout_marginTop="100dp"
         android:text="Task Details"
+        android:textAlignment="center"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
-        android:id="@+id/taskDetailDescriptionPlainText"
-        android:layout_width="238dp"
-        android:layout_height="268dp"
-        android:layout_marginTop="100dp"
-        android:text="We found them. The Knights Who Say Ni demand a sacrifice! Listen. Strange women lying in ponds distributing swords is no basis for a system of government. Supreme executive power derives from a mandate from the masses, not from some farcical aquatic ceremony.  "
+        android:id="@+id/taskDetailBodyPlainText"
+        android:layout_width="246dp"
+        android:layout_height="41dp"
+        android:layout_marginTop="92dp"
+        android:text="Task Body"
+        android:textAlignment="center"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.497"
+        app:layout_constraintHorizontal_bias="0.496"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/taskDetailTitleTextView" />
+
+    <TextView
+        android:id="@+id/taskDetailStateTextView"
+        android:layout_width="124dp"
+        android:layout_height="26dp"
+        android:layout_marginTop="99dp"
+        android:text="Task State"
+        android:textAlignment="center"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/taskDetailBodyPlainText" />
 </androidx.constraintlayout.widget.ConstraintLayout>
