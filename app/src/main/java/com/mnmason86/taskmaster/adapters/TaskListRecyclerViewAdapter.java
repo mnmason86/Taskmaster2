@@ -13,7 +13,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.mnmason86.taskmaster.R;
 import com.mnmason86.taskmaster.activities.MainActivity;
 import com.mnmason86.taskmaster.activities.TaskDetailActivity;
-import com.mnmason86.taskmaster.models.Task;
+import com.amplifyframework.datastore.generated.model.Task;
 
 import java.util.List;
 
@@ -46,7 +46,7 @@ public class TaskListRecyclerViewAdapter extends RecyclerView.Adapter<TaskListRe
         taskFragmentTextViewBody.setText(taskBody);
 
         TextView taskFragmentTextViewState = holder.itemView.findViewById(R.id.taskFragmentState);
-        String taskState = taskList.get(position).getTaskState().toString();
+        String taskState = taskList.get(position).getState().toString();
         taskFragmentTextViewState.setText(taskState);
 
         View taskViewHolder = holder.itemView;

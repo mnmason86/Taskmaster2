@@ -1,17 +1,23 @@
 package com.mnmason86.taskmaster.activities;
 
+import static com.mnmason86.taskmaster.TaskAmplifyApplication.Tag;
+
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.room.Room;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Spinner;
 
+import com.amplifyframework.api.graphql.model.ModelMutation;
+import com.amplifyframework.core.Amplify;
+import com.amplifyframework.datastore.generated.model.TaskStateEnum;
 import com.mnmason86.taskmaster.R;
-import com.mnmason86.taskmaster.models.Task;
+import com.amplifyframework.datastore.generated.model.*;
+import com.amplifyframework.core.model.temporal.Temporal;
 
 import java.util.Date;
 
@@ -23,8 +29,6 @@ public class AddTaskActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_add_task);
-
-
         setUpTaskStateSpinner();
         setUpSubmitBttn();
 
@@ -34,7 +38,7 @@ public class AddTaskActivity extends AppCompatActivity {
         taskStateSpinner.setAdapter(new ArrayAdapter<>(
                 this,
                 androidx.appcompat.R.layout.support_simple_spinner_dropdown_item,
-                Task.TaskStateEnum.values()
+                TaskStateEnum.values()
         ));
     }
     private void setUpSubmitBttn(){
@@ -44,12 +48,20 @@ public class AddTaskActivity extends AppCompatActivity {
 
             String taskTitle = ((EditText) findViewById(R.id.addTaskInputTitle)).getText().toString();
             String taskBody = ((EditText) findViewById(R.id.addTaskInputBody)).getText().toString();
-            java.util.Date newDate = new Date();
-            Task.TaskStateEnum taskStateEnum = Task.TaskStateEnum.fromString(taskStateSpinner.getSelectedItem().toString());
+            String currentDateString = com.amazonaws.util.DateUtils.formatISO8601Date(new Date());
 
-            Task newTask = new Task(taskTitle, taskBody, taskStateEnum, newDate);
+            Task newTask = Task.builder()
+                    .name(taskTitle)
+                    .body(taskBody)
+                    .state((TaskStateEnum) taskStateSpinner.getSelectedItem())
+                    .dateCreated(new Temporal.DateTime(currentDateString))
+                    .build();
 
-            //toDoDatabase.taskDao().insertTask(newTask);
+            Amplify.API.mutate(
+                    ModelMutation.create(newTask),
+                    success -> Log.i(Tag, "AddTaskActivity: created task successfully"),
+                    failure -> Log.i(Tag, "AddTaskActivity: failed with this response: " + failure)
+            );
 
             Intent goToMainActivity = new Intent(AddTaskActivity.this, MainActivity.class);
             startActivity(goToMainActivity);

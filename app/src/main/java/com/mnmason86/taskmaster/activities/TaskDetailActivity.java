@@ -8,7 +8,7 @@ import android.widget.TextView;
 
 import com.mnmason86.taskmaster.R;
 
-import org.w3c.dom.Text;
+
 
 public class TaskDetailActivity extends AppCompatActivity {
     SharedPreferences preferences;

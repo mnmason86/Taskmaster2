@@ -1,14 +1,11 @@
 package com.mnmason86.taskmaster.models;
 
 import androidx.annotation.NonNull;
-import androidx.room.Entity;
-import androidx.room.PrimaryKey;
 
 import java.util.Date;
 
 
 public class Task {
-
 
     public Long id;
     private String name;
