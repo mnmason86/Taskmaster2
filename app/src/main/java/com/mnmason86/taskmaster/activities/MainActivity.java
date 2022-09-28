@@ -20,6 +20,8 @@ import com.mnmason86.taskmaster.R;
 import com.mnmason86.taskmaster.adapters.TaskListRecyclerViewAdapter;
 import com.amplifyframework.datastore.generated.model.Task;
 
+import org.w3c.dom.Text;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -50,6 +52,10 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onResume(){
         super.onResume();
+        String userName = getIntent().getStringExtra("userName");
+        TextView userNameEdited = findViewById(R.id.activityMainUsernameTextView);
+        userNameEdited.setText(userName);
+
         Amplify.API.query(
                 ModelQuery.list(Task.class),
                 success -> {

@@ -9,7 +9,6 @@ import android.widget.TextView;
 import com.mnmason86.taskmaster.R;
 
 
-
 public class TaskDetailActivity extends AppCompatActivity {
     SharedPreferences preferences;
 

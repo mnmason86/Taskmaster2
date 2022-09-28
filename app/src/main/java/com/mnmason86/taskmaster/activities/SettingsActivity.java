@@ -2,6 +2,7 @@ package com.mnmason86.taskmaster.activities;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
@@ -39,7 +40,8 @@ public class SettingsActivity extends AppCompatActivity {
             preferenceEditor.putString(USER_NAME_TAG, nameInput);
             preferenceEditor.apply();
 
-            Toast.makeText(SettingsActivity.this, "Username saved", Toast.LENGTH_SHORT).show();
+            Intent goToMainActivity = new Intent(SettingsActivity.this, MainActivity.class);
+            startActivity(goToMainActivity);
         });
     }
 }
