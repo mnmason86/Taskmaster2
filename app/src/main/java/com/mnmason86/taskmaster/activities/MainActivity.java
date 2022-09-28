@@ -1,34 +1,39 @@
 package com.mnmason86.taskmaster.activities;
 
+import static com.mnmason86.taskmaster.TaskAmplifyApplication.Tag;
+
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
-import androidx.room.Room;
 
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
+import android.util.Log;
 import android.widget.Button;
 import android.widget.TextView;
 
+import com.amplifyframework.api.graphql.model.ModelQuery;
+import com.amplifyframework.core.Amplify;
 import com.mnmason86.taskmaster.R;
 import com.mnmason86.taskmaster.adapters.TaskListRecyclerViewAdapter;
-import com.mnmason86.taskmaster.database.ToDoDatabase;
-import com.mnmason86.taskmaster.models.Task;
+import com.amplifyframework.datastore.generated.model.Task;
+
+import org.w3c.dom.Text;
 
 import java.util.ArrayList;
 import java.util.List;
 
 
 public class MainActivity extends AppCompatActivity {
-    public static final String DATABASE_NAME = "taskmasterDb";
     public static final String TASK_NAME_EXTRA_TAG = "taskName";
     public static final String TASK_BODY_EXTRA_TAG = "taskBody";
     public static final String TASK_STATE_EXTRA_TAG = "taskState";
+
     SharedPreferences sharedPreferences;
-    ToDoDatabase toDoDatabase;
     List<Task> taskList = null;
+    TaskListRecyclerViewAdapter adapter;
 
 
     @Override
@@ -37,46 +42,43 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
         sharedPreferences = PreferenceManager.getDefaultSharedPreferences(this);
-
-        toDoDatabase = Room.databaseBuilder(
-                //put in separate method and call
-                getApplicationContext(),
-                ToDoDatabase.class,
-                DATABASE_NAME)
-                .allowMainThreadQueries()
-                .fallbackToDestructiveMigration()
-                .build(); //not implicit, MUST tell to build
-
-        taskList = toDoDatabase.taskDao().findAll();
-
+        taskList = new ArrayList<>();
         setUpTaskRecyclerView();
         createAddTaskButton();
         createAllTaskButton();
         createSettingsButton();
     }
+
+    @Override
+    protected void onResume(){
+        super.onResume();
+        String userName = getIntent().getStringExtra("userName");
+        TextView userNameEdited = findViewById(R.id.activityMainUsernameTextView);
+        userNameEdited.setText(userName);
+
+        Amplify.API.query(
+                ModelQuery.list(Task.class),
+                success -> {
+                    Log.i(Tag, "Read Tasks successfully!");
+                    taskList.clear();
+                    for(Task databaseTask : success.getData()){
+                        taskList.add(databaseTask);
+                    }
+                    runOnUiThread(() -> {
+                        adapter.notifyDataSetChanged();
+                    });
+                },
+                failure -> Log.i(Tag, "Did not read Tasks successfully :(")
+        );
+    }
+
     private void setUpTaskRecyclerView(){
 
         RecyclerView taskRecyclerView = findViewById(R.id.taskRecyclerView);
         RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(this);
         taskRecyclerView.setLayoutManager(layoutManager);
-
-        List<Task> taskList = toDoDatabase.taskDao().findAll();
-
-        TaskListRecyclerViewAdapter adapter = new TaskListRecyclerViewAdapter(taskList, this);
+        adapter = new TaskListRecyclerViewAdapter(taskList, this);
         taskRecyclerView.setAdapter(adapter);
-    }
-
-    @Override
-    protected void onResume(){
-        super.onResume();
-        String userName = sharedPreferences.getString(SettingsActivity.USER_NAME_TAG, "No username");
-        TextView userNameEdited = findViewById(R.id.activityMainUsernameTextView);
-        userNameEdited.setText(userName + "'s Tasks");
-
-        taskList.clear();
-        taskList.addAll(toDoDatabase.taskDao().findAll());
-
-        setUpTaskRecyclerView();
     }
 
     private void createAddTaskButton() {
