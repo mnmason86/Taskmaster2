@@ -96,6 +96,7 @@ Renders the name, body, and state of a task that is added from the Add Task Page
 
 ![Task Details Page](screenshots/taskmaster_task_details4.png)
 
+
 ## Lab 31 9/26/22
 
 ### Features
@@ -106,6 +107,7 @@ Added Espresso testing to verify the following:
 - The user can add a task, which is then rendered in the Recycler View on the home page
 
 **Tried unsuccessfully to test username rendering to homepage after modifying on the settings page. Feature works properly, but testing was out-of-sync. May be due to timing issues**
+
 
 ## Lab 32 9/27/22
 
