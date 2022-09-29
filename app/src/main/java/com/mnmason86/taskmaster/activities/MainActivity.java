@@ -47,6 +47,7 @@ public class MainActivity extends AppCompatActivity {
         createAddTaskButton();
         createAllTaskButton();
         createSettingsButton();
+
     }
 
     @Override
