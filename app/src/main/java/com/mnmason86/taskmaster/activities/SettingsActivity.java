@@ -41,6 +41,7 @@ public class SettingsActivity extends AppCompatActivity {
             preferenceEditor.apply();
 
             Intent goToMainActivity = new Intent(SettingsActivity.this, MainActivity.class);
+            goToMainActivity.putExtra(SettingsActivity.USER_NAME_TAG, nameInput);
             startActivity(goToMainActivity);
         });
     }
