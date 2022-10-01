@@ -125,6 +125,23 @@ Added Espresso testing to verify the following:
 
 ![Task Details Page](screenshots/taskmaster_task_details5.png)
 
+
+## Lab 33 9/28/22
+
+### Features
+
+- Created entity of 'Team', which has a team name, and an assigned list of tasks. 
+- Tasks are owned by a selected team
+- Add Task form includes a Spinner which includes Team options
+- Users can select their team on the Settings page.
+- Team name is rendered on the Home page once selected
+
+### Screenshots
+
+![Homepage](screenshots/taskmaster_home6.png)
+
+![Settings Page](screenshots/taskmaster_settings3.png)
+
 ### Attributions
 
 Alex White - demo code

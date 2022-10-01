@@ -17,6 +17,7 @@ import android.widget.TextView;
 import com.amplifyframework.api.graphql.model.ModelMutation;
 import com.amplifyframework.api.graphql.model.ModelQuery;
 import com.amplifyframework.core.Amplify;
+import com.amplifyframework.core.model.temporal.Temporal;
 import com.amplifyframework.datastore.generated.model.TaskStateEnum;
 import com.amplifyframework.datastore.generated.model.Team;
 import com.mnmason86.taskmaster.R;
@@ -26,6 +27,7 @@ import com.amplifyframework.datastore.generated.model.Task;
 import org.w3c.dom.Text;
 
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 
@@ -36,6 +38,11 @@ public class MainActivity extends AppCompatActivity {
     public static final String TAG = "MainActivity";
 
     SharedPreferences sharedPreferences;
+    TextView userTasksTV;
+    TextView userTeamTV;
+    String userTeam;
+    String userName;
+
     List<Task> taskList = null;
     TaskListRecyclerViewAdapter adapter;
 
@@ -53,7 +60,7 @@ public class MainActivity extends AppCompatActivity {
         createSettingsButton();
 
         //Hardcode Teams
-
+        String currentDateString = com.amazonaws.util.DateUtils.formatISO8601Date(new Date());
         Team teamOne = Team.builder()
                 .name("Toonts")
                 .build();
@@ -85,6 +92,7 @@ public class MainActivity extends AppCompatActivity {
                 .name("Dishes")
                 .body("Unload dishwasher, reload")
                 .state(TaskStateEnum.Assigned)
+                .dateCreated(new Temporal.DateTime(currentDateString))
                 .team(teamOne)
                 .build();
         Amplify.API.mutate(
@@ -97,6 +105,7 @@ public class MainActivity extends AppCompatActivity {
                 .name("Trash")
                 .body("Take out, replace bag")
                 .state(TaskStateEnum.New)
+                .dateCreated(new Temporal.DateTime(currentDateString))
                 .team(teamTwo)
                 .build();
         Amplify.API.mutate(
@@ -109,6 +118,7 @@ public class MainActivity extends AppCompatActivity {
                 .name("Vacuum")
                 .body("Living room rugs, bedroom rug, office rug")
                 .state(TaskStateEnum.Assigned)
+                .dateCreated(new Temporal.DateTime(currentDateString))
                 .team(teamThree)
                 .build();
         Amplify.API.mutate(
@@ -116,14 +126,12 @@ public class MainActivity extends AppCompatActivity {
                 success -> Log.i(TAG, "Task Three built"),
                 failure -> Log.i(TAG, "Task Three not built")
         );
-    }
+
+ }
 
     @Override
     protected void onResume(){
         super.onResume();
-        String userName = getIntent().getStringExtra("userName");
-        TextView userNameEdited = findViewById(R.id.activityMainUsernameTextView);
-        userNameEdited.setText(userName);
 
         Amplify.API.query(
                 ModelQuery.list(Task.class),
@@ -131,7 +139,9 @@ public class MainActivity extends AppCompatActivity {
                     Log.i(Tag, "Read Tasks successfully!");
                     taskList.clear();
                     for(Task databaseTask : success.getData()){
-                        taskList.add(databaseTask);
+                        if(databaseTask.getTeam().getName().equals(userTeam)){
+                            taskList.add(databaseTask);
+                        }
                     }
                     runOnUiThread(() -> {
                         adapter.notifyDataSetChanged();
@@ -139,6 +149,14 @@ public class MainActivity extends AppCompatActivity {
                 },
                 failure -> Log.i(Tag, "Did not read Tasks successfully :(")
         );
+
+        userName = sharedPreferences.getString(SettingsActivity.USER_NAME_TAG,"userName");
+        userTeam = sharedPreferences.getString(SettingsActivity.USER_TEAM_TAG, "Choose a team!");
+        userTasksTV = (TextView) findViewById(R.id.activityMainUsernameTextView);
+        userTeamTV = (TextView) findViewById(R.id.activityMainUserTeamTextView);
+        userTasksTV.setText(userName + "'s Tasks:");
+        userTeamTV.setText(userTeam);
+
     }
 
     private void setUpTaskRecyclerView(){
