@@ -1,36 +1,72 @@
 # this is an auto generated file. This will be overwritten
-mutation CreateTodo(
-  $input: CreateTodoInput!
-  $condition: ModelTodoConditionInput
+mutation CreateTeam(
+  $input: CreateTeamInput!
+  $condition: ModelTeamConditionInput
 ) {
-  createTodo(input: $input, condition: $condition) {
+  createTeam(input: $input, condition: $condition) {
     id
     name
-    description
+    tasks {
+      items {
+        id
+        name
+        teamID
+        body
+        state
+        dateCreated
+        createdAt
+        updatedAt
+      }
+      nextToken
+    }
     createdAt
     updatedAt
   }
 }
-mutation UpdateTodo(
-  $input: UpdateTodoInput!
-  $condition: ModelTodoConditionInput
+mutation UpdateTeam(
+  $input: UpdateTeamInput!
+  $condition: ModelTeamConditionInput
 ) {
-  updateTodo(input: $input, condition: $condition) {
+  updateTeam(input: $input, condition: $condition) {
     id
     name
-    description
+    tasks {
+      items {
+        id
+        name
+        teamID
+        body
+        state
+        dateCreated
+        createdAt
+        updatedAt
+      }
+      nextToken
+    }
     createdAt
     updatedAt
   }
 }
-mutation DeleteTodo(
-  $input: DeleteTodoInput!
-  $condition: ModelTodoConditionInput
+mutation DeleteTeam(
+  $input: DeleteTeamInput!
+  $condition: ModelTeamConditionInput
 ) {
-  deleteTodo(input: $input, condition: $condition) {
+  deleteTeam(input: $input, condition: $condition) {
     id
     name
-    description
+    tasks {
+      items {
+        id
+        name
+        teamID
+        body
+        state
+        dateCreated
+        createdAt
+        updatedAt
+      }
+      nextToken
+    }
     createdAt
     updatedAt
   }
@@ -42,9 +78,19 @@ mutation CreateTask(
   createTask(input: $input, condition: $condition) {
     id
     name
+    teamID
     body
     state
     dateCreated
+    team {
+      id
+      name
+      tasks {
+        nextToken
+      }
+      createdAt
+      updatedAt
+    }
     createdAt
     updatedAt
   }
@@ -56,9 +102,19 @@ mutation UpdateTask(
   updateTask(input: $input, condition: $condition) {
     id
     name
+    teamID
     body
     state
     dateCreated
+    team {
+      id
+      name
+      tasks {
+        nextToken
+      }
+      createdAt
+      updatedAt
+    }
     createdAt
     updatedAt
   }
@@ -70,9 +126,19 @@ mutation DeleteTask(
   deleteTask(input: $input, condition: $condition) {
     id
     name
+    teamID
     body
     state
     dateCreated
+    team {
+      id
+      name
+      tasks {
+        nextToken
+      }
+      createdAt
+      updatedAt
+    }
     createdAt
     updatedAt
   }
