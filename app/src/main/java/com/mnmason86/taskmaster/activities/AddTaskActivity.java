@@ -3,7 +3,6 @@ package com.mnmason86.taskmaster.activities;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
-
 import android.os.Bundle;
 import android.preference.PreferenceManager;
 import android.util.Log;
@@ -23,12 +22,15 @@ import com.amplifyframework.core.model.temporal.Temporal;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
+import java.util.concurrent.CompletableFuture;
+import java.util.concurrent.ExecutionException;
 
 public class AddTaskActivity extends AppCompatActivity {
     public static final String TAG = "AddTaskActivity";
     Team selectedTeam;
     List<String> teamNames = null;
     ArrayAdapter<String> adapter;
+    CompletableFuture<List<Team>> teamFuture = null;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -70,6 +72,7 @@ public class AddTaskActivity extends AppCompatActivity {
         adapter = new ArrayAdapter<String>(this, androidx.appcompat.R.layout.support_simple_spinner_dropdown_item, teamNames);
         addTaskTeamSpinner.setAdapter(adapter);
     }
+
     private void setUpTaskStateSpinner(){
         Spinner taskStateSpinner = findViewById(R.id.addTaskStateSpinner);
         taskStateSpinner.setAdapter(new ArrayAdapter<>(
@@ -92,12 +95,14 @@ public class AddTaskActivity extends AppCompatActivity {
             Amplify.API.query(
                     ModelQuery.list(Team.class),
                     success ->  {
+                        Log.i(TAG, "Successfully read teams " + success);
                         for (Team dataBaseTeam : success.getData()){
                             if(dataBaseTeam.getName().equals(teamSpinner.getSelectedItem())){
                                 selectedTeam = dataBaseTeam;
                             }
                         }
                         runOnUiThread(() -> {
+                            adapter.notifyDataSetChanged();
                         });
                     },
                     failure -> Log.i(TAG, "Did not read teams successfully")
@@ -107,6 +112,7 @@ public class AddTaskActivity extends AppCompatActivity {
                     .name(taskTitle)
                     .body(taskBody)
                     .state((TaskStateEnum) taskStateSpinner.getSelectedItem())
+                    .dateCreated(new Temporal.DateTime(currentDateString))
                     .team(selectedTeam)
                     .build();
 

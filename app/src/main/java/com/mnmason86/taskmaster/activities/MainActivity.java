@@ -60,72 +60,72 @@ public class MainActivity extends AppCompatActivity {
         createSettingsButton();
 
         //Hardcode Teams
-        String currentDateString = com.amazonaws.util.DateUtils.formatISO8601Date(new Date());
-        Team teamOne = Team.builder()
-                .name("Toonts")
-                .build();
-        Amplify.API.mutate(
-                ModelMutation.create(teamOne),
-                success -> Log.i(TAG, "Team One built"),
-                failure -> Log.i(TAG, "Team One not built")
-        );
-
-        Team teamTwo = Team.builder()
-                .name("TimeZoneBandits")
-                .build();
-        Amplify.API.mutate(
-                ModelMutation.create(teamTwo),
-                success -> Log.i(TAG, "Team Two built"),
-                failure -> Log.i(TAG, "Team Two not built")
-        );
-
-        Team teamThree = Team.builder()
-                .name("JavaNauts")
-                .build();
-        Amplify.API.mutate(
-                ModelMutation.create(teamThree),
-                success -> Log.i(TAG, "Team Three built"),
-                failure -> Log.i(TAG, "Team Three not built")
-        );
-
-        Task taskOne = Task.builder()
-                .name("Dishes")
-                .body("Unload dishwasher, reload")
-                .state(TaskStateEnum.Assigned)
-                .dateCreated(new Temporal.DateTime(currentDateString))
-                .team(teamOne)
-                .build();
-        Amplify.API.mutate(
-                ModelMutation.create(taskOne),
-                success -> Log.i(TAG, "Task One built"),
-                failure -> Log.i(TAG, "Task One not built")
-        );
-
-        Task taskTwo = Task.builder()
-                .name("Trash")
-                .body("Take out, replace bag")
-                .state(TaskStateEnum.New)
-                .dateCreated(new Temporal.DateTime(currentDateString))
-                .team(teamTwo)
-                .build();
-        Amplify.API.mutate(
-                ModelMutation.create(taskTwo),
-                success -> Log.i(TAG, "Task Two built"),
-                failure -> Log.i(TAG, "Task Two not built")
-        );
-
-        Task taskThree = Task.builder()
-                .name("Vacuum")
-                .body("Living room rugs, bedroom rug, office rug")
-                .state(TaskStateEnum.Assigned)
-                .dateCreated(new Temporal.DateTime(currentDateString))
-                .team(teamThree)
-                .build();
-        Amplify.API.mutate(
-                ModelMutation.create(taskThree),
-                success -> Log.i(TAG, "Task Three built"),
-                failure -> Log.i(TAG, "Task Three not built")
-        );
+//        String currentDateString = com.amazonaws.util.DateUtils.formatISO8601Date(new Date());
+//        Team teamOne = Team.builder()
+//                .name("Toonts")
+//                .build();
+//        Amplify.API.mutate(
+//                ModelMutation.create(teamOne),
+//                success -> Log.i(TAG, "Team One built"),
+//                failure -> Log.i(TAG, "Team One not built")
+//        );
+//
+//        Team teamTwo = Team.builder()
+//                .name("TimeZoneBandits")
+//                .build();
+//        Amplify.API.mutate(
+//                ModelMutation.create(teamTwo),
+//                success -> Log.i(TAG, "Team Two built"),
+//                failure -> Log.i(TAG, "Team Two not built")
+//        );
+//
+//        Team teamThree = Team.builder()
+//                .name("JavaNauts")
+//                .build();
+//        Amplify.API.mutate(
+//                ModelMutation.create(teamThree),
+//                success -> Log.i(TAG, "Team Three built"),
+//                failure -> Log.i(TAG, "Team Three not built")
+//        );
+//
+//        Task taskOne = Task.builder()
+//                .name("Dishes")
+//                .body("Unload dishwasher, reload")
+//                .state(TaskStateEnum.Assigned)
+//                .dateCreated(new Temporal.DateTime(currentDateString))
+//                .team(teamOne)
+//                .build();
+//        Amplify.API.mutate(
+//                ModelMutation.create(taskOne),
+//                success -> Log.i(TAG, "Task One built"),
+//                failure -> Log.i(TAG, "Task One not built")
+//        );
+//
+//        Task taskTwo = Task.builder()
+//                .name("Trash")
+//                .body("Take out, replace bag")
+//                .state(TaskStateEnum.New)
+//                .dateCreated(new Temporal.DateTime(currentDateString))
+//                .team(teamTwo)
+//                .build();
+//        Amplify.API.mutate(
+//                ModelMutation.create(taskTwo),
+//                success -> Log.i(TAG, "Task Two built"),
+//                failure -> Log.i(TAG, "Task Two not built")
+//        );
+//
+//        Task taskThree = Task.builder()
+//                .name("Vacuum")
+//                .body("Living room rugs, bedroom rug, office rug")
+//                .state(TaskStateEnum.Assigned)
+//                .dateCreated(new Temporal.DateTime(currentDateString))
+//                .team(teamThree)
+//                .build();
+//        Amplify.API.mutate(
+//                ModelMutation.create(taskThree),
+//                success -> Log.i(TAG, "Task Three built"),
+//                failure -> Log.i(TAG, "Task Three not built")
+//        );
 
  }
 

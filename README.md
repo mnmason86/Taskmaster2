@@ -145,5 +145,6 @@ Added Espresso testing to verify the following:
 ### Attributions
 
 Alex White - demo code
+Lucy Gelderloos - GitHub repo
 Ben Mills & Raul Zarate - help with debugging
 Stanley Wilder - collaboration
