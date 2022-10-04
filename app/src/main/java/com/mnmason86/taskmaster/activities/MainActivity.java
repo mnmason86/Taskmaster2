@@ -58,20 +58,20 @@ public class MainActivity extends AppCompatActivity {
 
         // Hardcode signup
 
-        Amplify.Auth.signUp("mnmason86@gmail.com",
-                "p@ssw0rd",
-                AuthSignUpOptions.builder()
-                        .userAttribute(AuthUserAttributeKey.email(), "mnmason86@gmail.com")
-                        .userAttribute(AuthUserAttributeKey.nickname(), "EtheReal")
-                        .build(),
-                success -> Log.i(TAG, "Signup successful! " + success),
-                failure -> Log.i(TAG, "Signup failed with email " + "mnmason86@gmail.com " + "with message: " + failure)
-        );
+//        Amplify.Auth.signUp("mnmason86@gmail.com",
+//                "p@ssw0rd",
+//                AuthSignUpOptions.builder()
+//                        .userAttribute(AuthUserAttributeKey.email(), "mnmason86@gmail.com")
+//                        .userAttribute(AuthUserAttributeKey.nickname(), "EtheReal")
+//                        .build(),
+//                success -> Log.i(TAG, "Signup successful! " + success),
+//                failure -> Log.i(TAG, "Signup failed with email " + "mnmason86@gmail.com " + "with message: " + failure)
+//        );
 
         // User verify
 
 //        Amplify.Auth.confirmSignUp("mnmason86@gmail.com",
-//                "confirmation_code",
+//                "547534",
 //                success -> Log.i(TAG, "Verification succeeded: " + success),
 //                failure -> Log.i(TAG, "Verification failed: " + failure)
 //                );
@@ -83,11 +83,11 @@ public class MainActivity extends AppCompatActivity {
 //                success -> Log.i(TAG, "Login succeeded: " + success.toString()),
 //                failure -> Log.i(TAG, "Login failed: " + failure.toString())
 //        );
-        Amplify.Auth.fetchAuthSession(
-                result -> Log.i("AmplifyQuickstart ", result.toString()),
-                error -> Log.e("AmplifyQuickstart ", error.toString())
-        );
-        //Logout
+//        Amplify.Auth.fetchAuthSession(
+//                result -> Log.i("AmplifyQuickstart ", result.toString()),
+//                error -> Log.e("AmplifyQuickstart ", error.toString())
+//        );
+//        //Logout
 //        Amplify.Auth.signOut(
 //                () -> {
 //                    Log.i(TAG, "Logout succeeded!");
