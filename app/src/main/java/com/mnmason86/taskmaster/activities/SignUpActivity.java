@@ -26,27 +26,28 @@ public class SignUpActivity extends AppCompatActivity {
     }
 
     private void setUpSignUpForm(){
-        String userEmail = ((EditText)findViewById(R.id.signUpEmailEditText)).getText().toString();
-        String userPassword = ((EditText) findViewById(R.id.signUpPasswordEditText)).getText().toString();
 
-                Amplify.Auth.signUp(userEmail,
-                userPassword,
-                AuthSignUpOptions.builder()
-                        .userAttribute(AuthUserAttributeKey.email(), userEmail)
-                        .build(),
-                success -> {
-                    Log.i(TAG, "Signup successful! " + success);
-                    Intent goToVerifyActivity = new Intent(SignUpActivity.this, VerifyActivity.class);
-                    goToVerifyActivity.putExtra(SIGNUP_EMAIL_TAG, userEmail);
-                    startActivity(goToVerifyActivity);
-                },
-                failure -> {
-                    Log.i(TAG, "Signup failed with email " + userEmail + " with message: " + failure);
+        findViewById(R.id.signUpSubmitButton).setOnClickListener(view -> {
+            String userEmail = ((EditText)findViewById(R.id.signUpEmailEditText)).getText().toString();
+            String userPassword = ((EditText) findViewById(R.id.signUpPasswordEditText)).getText().toString();
 
-                    runOnUiThread(() -> Toast.makeText(SignUpActivity.this, "Signup Failed", Toast.LENGTH_SHORT).show());
-                }
-        );
+            Amplify.Auth.signUp(userEmail,
+                    userPassword,
+                    AuthSignUpOptions.builder()
+                            .userAttribute(AuthUserAttributeKey.email(), userEmail)
+                            .build(),
+                    success -> {
+                        Log.i(TAG, "Signup successful! " + success);
+                        Intent goToVerifyActivity = new Intent(SignUpActivity.this, VerifyActivity.class);
+                        goToVerifyActivity.putExtra(SIGNUP_EMAIL_TAG, userEmail);
+                        startActivity(goToVerifyActivity);
+                    },
+                    failure -> {
+                        Log.i(TAG, "Signup failed with email " + userEmail + " with message: " + failure);
+
+                        runOnUiThread(() -> Toast.makeText(SignUpActivity.this, "Signup Failed", Toast.LENGTH_SHORT).show());
+                    }
+            );
+        });
     }
-
-
 }

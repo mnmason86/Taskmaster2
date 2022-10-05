@@ -13,7 +13,13 @@
     },
     "categories": {
       "auth": {
-        "taskmasterdc5273a2": {}
+        "taskmasterdc5273a2": {},
+        "taskmasterc9371a4a": {
+          "userPoolId": "us-east-1_enSxhHfeJ",
+          "userPoolName": "us-east-1_Cd1qTi7ko",
+          "webClientId": "6uvj64ldgbdkg6d4bjhk02bk60",
+          "nativeClientId": "6uvj64ldgbdkg6d4bjhk02bk60"
+        }
       }
     }
   }
