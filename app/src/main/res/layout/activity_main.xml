@@ -85,4 +85,28 @@
         tools:layout_editor_absoluteX="38dp"
         tools:layout_editor_absoluteY="94dp" />
 
+    <Button
+        android:id="@+id/mainActivitySignUpButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="210dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginEnd="24dp"
+        android:text="Sign up"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/activityMainUserTeamTextView"
+        app:layout_constraintTop_toBottomOf="@+id/mainActivitySettingsButton" />
+
+    <Button
+        android:id="@+id/mainActivityLoginButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="284dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginEnd="24dp"
+        android:text="Log in"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/mainActivitySignUpButton" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>

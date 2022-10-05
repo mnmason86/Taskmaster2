@@ -16,8 +16,6 @@ import android.widget.TextView;
 
 import com.amplifyframework.api.graphql.model.ModelQuery;
 import com.amplifyframework.auth.AuthUser;
-import com.amplifyframework.auth.AuthUserAttributeKey;
-import com.amplifyframework.auth.options.AuthSignUpOptions;
 import com.amplifyframework.core.Amplify;
 import com.mnmason86.taskmaster.R;
 import com.mnmason86.taskmaster.adapters.TaskListRecyclerViewAdapter;
@@ -41,8 +39,6 @@ public class MainActivity extends AppCompatActivity {
 
     List<Task> taskList = null;
     TaskListRecyclerViewAdapter adapter;
-    public AuthUser currentUser = null;
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -55,39 +51,8 @@ public class MainActivity extends AppCompatActivity {
         createAddTaskButton();
         createAllTaskButton();
         createSettingsButton();
-
-        // Hardcode signup
-
-
-
-        // User verify
-
-//        Amplify.Auth.confirmSignUp("mnmason86@gmail.com",
-//                "547534",
-//                success -> Log.i(TAG, "Verification succeeded: " + success),
-//                failure -> Log.i(TAG, "Verification failed: " + failure)
-//                );
-
-        // User Login
-
-//        Amplify.Auth.signIn("mnmason86@gmail.com",
-//                "p@ssw0rd",
-//                success -> Log.i(TAG, "Login succeeded: " + success.toString()),
-//                failure -> Log.i(TAG, "Login failed: " + failure.toString())
-//        );
-//        Amplify.Auth.fetchAuthSession(
-//                result -> Log.i("AmplifyQuickstart ", result.toString()),
-//                error -> Log.e("AmplifyQuickstart ", error.toString())
-//        );
-//        //Logout
-//        Amplify.Auth.signOut(
-//                () -> {
-//                    Log.i(TAG, "Logout succeeded!");
-//                },
-//                failure -> {
-//                    Log.i(TAG, "Logout failed: " + failure.toString());
-//                }
-//        );
+        createSignUpButton();
+        createLoginButton();
  }
 
     @Override
@@ -113,11 +78,25 @@ public class MainActivity extends AppCompatActivity {
 
         userName = sharedPreferences.getString(SettingsActivity.USER_NAME_TAG,"userName");
         userTeam = sharedPreferences.getString(SettingsActivity.USER_TEAM_TAG, "Choose a team!");
-        userTasksTV = (TextView) findViewById(R.id.activityMainUsernameTextView);
-        userTeamTV = (TextView) findViewById(R.id.activityMainUserTeamTextView);
+        userTasksTV = findViewById(R.id.activityMainUsernameTextView);
+        userTeamTV = findViewById(R.id.activityMainUserTeamTextView);
         userTasksTV.setText(userName + "'s Tasks:");
         userTeamTV.setText(userTeam);
 
+    }
+
+    private void createLoginButton(){
+        findViewById(R.id.mainActivityLoginButton).setOnClickListener(view -> {
+            Intent goToLoginActivity = new Intent(MainActivity.this, LoginActivity.class);
+            startActivity(goToLoginActivity);
+        });
+    }
+
+    private void createSignUpButton(){
+        findViewById(R.id.mainActivitySignUpButton).setOnClickListener(view -> {
+            Intent goToSignUpActivity = new Intent(MainActivity.this, SignUpActivity.class);
+            startActivity(goToSignUpActivity);
+        });
     }
 
     private void setUpTaskRecyclerView(){
