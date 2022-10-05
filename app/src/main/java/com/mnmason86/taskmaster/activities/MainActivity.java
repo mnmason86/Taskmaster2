@@ -58,15 +58,7 @@ public class MainActivity extends AppCompatActivity {
 
         // Hardcode signup
 
-//        Amplify.Auth.signUp("mnmason86@gmail.com",
-//                "p@ssw0rd",
-//                AuthSignUpOptions.builder()
-//                        .userAttribute(AuthUserAttributeKey.email(), "mnmason86@gmail.com")
-//                        .userAttribute(AuthUserAttributeKey.nickname(), "EtheReal")
-//                        .build(),
-//                success -> Log.i(TAG, "Signup successful! " + success),
-//                failure -> Log.i(TAG, "Signup failed with email " + "mnmason86@gmail.com " + "with message: " + failure)
-//        );
+
 
         // User verify
 
