@@ -4,8 +4,17 @@
     "apiName": "taskmaster",
     "serviceName": "AppSync",
     "defaultAuthType": {
-      "mode": "API_KEY",
-      "expirationTime": 7
-    }
+      "mode": "AMAZON_COGNITO_USER_POOLS",
+      "cognitoUserPoolId": "authtaskmaster9867b5bd"
+    },
+    "conflictResolution": {},
+    "additionalAuthTypes": [
+      {
+        "mode": "API_KEY",
+        "expirationTime": 90,
+        "apiKeyExpirationDate": "2023-01-03T02:22:33.047Z",
+        "keyDescription": "taskmaster key"
+      }
+    ]
   }
 }

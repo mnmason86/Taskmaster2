@@ -12,7 +12,16 @@
               "apiKeyExpirationDays": 7
             }
           },
-          "additionalAuthenticationProviders": []
+          "additionalAuthenticationProviders": [
+            {
+              "authenticationType": "API_KEY",
+              "apiKeyConfig": {
+                "description": "taskmaster key",
+                "apiKeyExpirationDays": 90,
+                "apiKeyExpirationDate": "2023-01-03T02:22:33.047Z"
+              }
+            }
+          ]
         }
       }
     }
@@ -41,6 +50,13 @@
           "EMAIL"
         ]
       }
+    },
+    "taskmasterc9371a4a": {
+      "service": "Cognito",
+      "serviceType": "imported",
+      "providerPlugin": "awscloudformation",
+      "dependsOn": [],
+      "customAuth": false
     }
   }
 }

@@ -15,7 +15,21 @@
         android:theme="@style/Theme.Taskmaster"
         tools:targetApi="31">
         <activity
-            android:name=".SignUpActivity"
+            android:name=".activities.LoginActivity"
+            android:exported="false">
+            <meta-data
+                android:name="android.app.lib_name"
+                android:value="" />
+        </activity>
+        <activity
+            android:name=".activities.VerifyActivity"
+            android:exported="false">
+            <meta-data
+                android:name="android.app.lib_name"
+                android:value="" />
+        </activity>
+        <activity
+            android:name=".activities.SignUpActivity"
             android:exported="false">
             <meta-data
                 android:name="android.app.lib_name"

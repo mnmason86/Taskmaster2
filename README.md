@@ -142,7 +142,25 @@ Added Espresso testing to verify the following:
 
 ![Settings Page](screenshots/taskmaster_settings3.png)
 
-### Attributions
+## Lab36 10/4/22
+
+### Features
+
+- AWS Cognito integrated to handle user Authentication and Verification
+- Sign Up Activity accepts user input of email address and password, then redirects to verification activity
+- Verification Activity accepts a verification code which is sent to the user via email, and redirects to the Login Activity
+- Main Activity has buttons which redirect to Sign Up and Log In Activities
+- Log In activity accepts user input of email address and password after a user has signed up and verified their email address.
+
+### Screenshots
+
+![Homepage](screenshots/taskmaster_home7.png)
+
+![Sign Up Page](screenshots/taskmaster_signup7.png)
+
+![Log In Page](screenshots/taskmaster_login7.png)
+
+### Taskmaster App Attributions
 
 Alex White - demo code
 Lucy Gelderloos - GitHub repo
