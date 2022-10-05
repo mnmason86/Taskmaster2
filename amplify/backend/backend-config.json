@@ -12,29 +12,22 @@
               "apiKeyExpirationDays": 7
             }
           },
-          "additionalAuthenticationProviders": [
-            {
-              "authenticationType": "API_KEY",
-              "apiKeyConfig": {
-                "description": "taskmaster key",
-                "apiKeyExpirationDays": 90,
-                "apiKeyExpirationDate": "2023-01-03T02:22:33.047Z"
-              }
-            }
-          ]
+          "additionalAuthenticationProviders": []
         }
       }
     }
   },
   "auth": {
-    "taskmasterdc5273a2": {
+    "taskmaster9867b5bd": {
       "service": "Cognito",
       "providerPlugin": "awscloudformation",
       "dependsOn": [],
       "customAuth": false,
       "frontendAuthConfig": {
         "socialProviders": [],
-        "usernameAttributes": [],
+        "usernameAttributes": [
+          "EMAIL"
+        ],
         "signupAttributes": [
           "EMAIL"
         ],
@@ -50,13 +43,6 @@
           "EMAIL"
         ]
       }
-    },
-    "taskmasterc9371a4a": {
-      "service": "Cognito",
-      "serviceType": "imported",
-      "providerPlugin": "awscloudformation",
-      "dependsOn": [],
-      "customAuth": false
     }
   }
 }
