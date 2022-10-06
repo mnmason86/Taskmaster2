@@ -15,8 +15,8 @@ import android.widget.EditText;
 import android.widget.Spinner;
 
 
-import com.amplifyframework.api.graphql.model.ModelQuery;
-import com.amplifyframework.core.Amplify;
+//import com.amplifyframework.api.graphql.model.ModelQuery;
+//import com.amplifyframework.core.Amplify;
 import com.amplifyframework.datastore.generated.model.Team;
 import com.mnmason86.taskmaster.R;
 
@@ -55,20 +55,20 @@ public class SettingsActivity extends AppCompatActivity {
     protected void onResume(){
         super.onResume();
 
-        Amplify.API.query(
-                ModelQuery.list(Team.class),
-                success -> {
-                    Log.i(TAG, "Teams read successfully!");
-                    teamNames.clear();
-                    for (Team dataBaseTeam : success.getData()){
-                        teamNames.add(dataBaseTeam.getName());
-                    }
-                    runOnUiThread(() -> {
-                        adapter.notifyDataSetChanged();
-                    });
-                },
-                failure -> Log.i(TAG, "Did not read team successfully")
-        );
+//        Amplify.API.query(
+//                ModelQuery.list(Team.class),
+//                success -> {
+//                    Log.i(TAG, "Teams read successfully!");
+//                    teamNames.clear();
+//                    for (Team dataBaseTeam : success.getData()){
+//                        teamNames.add(dataBaseTeam.getName());
+//                    }
+//                    runOnUiThread(() -> {
+//                        adapter.notifyDataSetChanged();
+//                    });
+//                },
+//                failure -> Log.i(TAG, "Did not read team successfully")
+//        );
     }
     private void createSaveButton() {
         Button saveButton = SettingsActivity.this.findViewById(R.id.settingsActivitySaveButton);

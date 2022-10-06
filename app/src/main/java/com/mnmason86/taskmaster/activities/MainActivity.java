@@ -1,6 +1,6 @@
 package com.mnmason86.taskmaster.activities;
 
-import static com.mnmason86.taskmaster.TaskAmplifyApplication.Tag;
+//import static com.mnmason86.taskmaster.TaskAmplifyApplication.Tag;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -14,9 +14,9 @@ import android.util.Log;
 import android.widget.Button;
 import android.widget.TextView;
 
-import com.amplifyframework.api.graphql.model.ModelQuery;
-import com.amplifyframework.auth.AuthUser;
-import com.amplifyframework.core.Amplify;
+//import com.amplifyframework.api.graphql.model.ModelQuery;
+//import com.amplifyframework.auth.AuthUser;
+//import com.amplifyframework.core.Amplify;
 import com.mnmason86.taskmaster.R;
 import com.mnmason86.taskmaster.adapters.TaskListRecyclerViewAdapter;
 import com.amplifyframework.datastore.generated.model.Task;
@@ -59,22 +59,22 @@ public class MainActivity extends AppCompatActivity {
     protected void onResume(){
         super.onResume();
 
-        Amplify.API.query(
-                ModelQuery.list(Task.class),
-                success -> {
-                    Log.i(Tag, "Read Tasks successfully!");
-                    taskList.clear();
-                    for(Task databaseTask : success.getData()){
-                        if(databaseTask.getTeam().getName().equals(userTeam)){
-                            taskList.add(databaseTask);
-                        }
-                    }
-                    runOnUiThread(() -> {
-                        adapter.notifyDataSetChanged();
-                    });
-                },
-                failure -> Log.i(Tag, "Did not read Tasks successfully :(")
-        );
+//        Amplify.API.query(
+//                ModelQuery.list(Task.class),
+//                success -> {
+//                    Log.i(Tag, "Read Tasks successfully!");
+//                    taskList.clear();
+//                    for(Task databaseTask : success.getData()){
+//                        if(databaseTask.getTeam().getName().equals(userTeam)){
+//                            taskList.add(databaseTask);
+//                        }
+//                    }
+//                    runOnUiThread(() -> {
+//                        adapter.notifyDataSetChanged();
+//                    });
+//                },
+//                failure -> Log.i(Tag, "Did not read Tasks successfully :(")
+//        );
 
         userName = sharedPreferences.getString(SettingsActivity.USER_NAME_TAG,"userName");
         userTeam = sharedPreferences.getString(SettingsActivity.USER_TEAM_TAG, "Choose a team!");
