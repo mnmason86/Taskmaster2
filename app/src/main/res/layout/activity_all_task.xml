@@ -25,19 +25,22 @@
         android:layout_marginTop="80dp"
         android:layout_marginEnd="165dp"
         android:text="All Tasks"
+        android:textSize="20sp"
+        android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
-    <ImageView
-        android:id="@+id/imageView"
-        android:layout_width="224dp"
-        android:layout_height="174dp"
-        android:layout_marginStart="32dp"
-        android:layout_marginTop="100dp"
-        android:layout_marginEnd="32dp"
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/allTaskRecyclerView"
+        android:layout_width="337dp"
+        android:layout_height="426dp"
+        android:layout_marginTop="50dp"
+        android:layout_marginBottom="69dp"
+        app:layout_constraintBottom_toTopOf="@+id/allTasksBackButton"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/allTasksTextView"
-        app:srcCompat="@android:mipmap/sym_def_app_icon" />
+        app:layout_constraintTop_toBottomOf="@+id/allTasksTextView" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>
