@@ -1,6 +1,6 @@
 package com.mnmason86.taskmaster.activities;
 
-import static com.mnmason86.taskmaster.TaskAmplifyApplication.Tag;
+//import static com.mnmason86.taskmaster.TaskAmplifyApplication.Tag;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -14,14 +14,19 @@ import android.util.Log;
 import android.widget.Button;
 import android.widget.TextView;
 
+//import com.amplifyframework.api.graphql.model.ModelQuery;
+//import com.amplifyframework.auth.AuthUser;
+//import com.amplifyframework.core.Amplify;
+import com.amplifyframework.api.graphql.model.ModelMutation;
 import com.amplifyframework.api.graphql.model.ModelQuery;
-import com.amplifyframework.auth.AuthUser;
 import com.amplifyframework.core.Amplify;
+import com.amplifyframework.datastore.generated.model.Team;
 import com.mnmason86.taskmaster.R;
 import com.mnmason86.taskmaster.adapters.TaskListRecyclerViewAdapter;
 import com.amplifyframework.datastore.generated.model.Task;
 
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 
@@ -62,7 +67,7 @@ public class MainActivity extends AppCompatActivity {
         Amplify.API.query(
                 ModelQuery.list(Task.class),
                 success -> {
-                    Log.i(Tag, "Read Tasks successfully!");
+                    Log.i(TAG, "Read Tasks successfully!");
                     taskList.clear();
                     for(Task databaseTask : success.getData()){
                         if(databaseTask.getTeam().getName().equals(userTeam)){
@@ -73,7 +78,7 @@ public class MainActivity extends AppCompatActivity {
                         adapter.notifyDataSetChanged();
                     });
                 },
-                failure -> Log.i(Tag, "Did not read Tasks successfully :(")
+                failure -> Log.i(TAG, "Did not read Tasks successfully :(")
         );
 
         userName = sharedPreferences.getString(SettingsActivity.USER_NAME_TAG,"userName");

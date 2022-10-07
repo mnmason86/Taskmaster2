@@ -48,10 +48,10 @@ public class VerifyActivity extends AppCompatActivity {
         });
 
 
-//        Amplify.Auth.confirmSignUp("mnmason86@gmail.com",
-//                "547534",
-//                success -> Log.i(TAG, "Verification succeeded: " + success),
-//                failure -> Log.i(TAG, "Verification failed: " + failure)
-//        );
+        Amplify.Auth.confirmSignUp("mnmason86@gmail.com",
+                "547534",
+                success -> Log.i(TAG, "Verification succeeded: " + success),
+                failure -> Log.i(TAG, "Verification failed: " + failure)
+        );
     }
 }

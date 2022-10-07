@@ -81,20 +81,24 @@
         android:id="@+id/activityMainUserTeamTextView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginStart="38dp"
+        android:layout_marginTop="32dp"
+        android:layout_marginBottom="129dp"
         android:text="Team"
-        tools:layout_editor_absoluteX="38dp"
-        tools:layout_editor_absoluteY="94dp" />
+        app:layout_constraintBottom_toTopOf="@+id/taskRecyclerView"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/activityMainUsernameTextView" />
 
     <Button
         android:id="@+id/mainActivitySignUpButton"
-        android:layout_width="wrap_content"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginStart="210dp"
         android:layout_marginTop="16dp"
         android:layout_marginEnd="24dp"
+        android:layout_marginBottom="16dp"
         android:text="Sign up"
+        app:layout_constraintBottom_toTopOf="@+id/mainActivityLoginButton"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/activityMainUserTeamTextView"
         app:layout_constraintTop_toBottomOf="@+id/mainActivitySettingsButton" />
 
     <Button

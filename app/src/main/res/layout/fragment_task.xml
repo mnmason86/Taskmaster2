@@ -14,11 +14,14 @@
         android:id="@+id/taskFragmentName"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginStart="24dp"
         android:layout_marginTop="32dp"
+        android:layout_marginBottom="32dp"
         android:text="Task Name"
         android:textStyle="bold"
+        app:layout_constraintBottom_toTopOf="@+id/taskFragmentBody"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.507"
+        app:layout_constraintHorizontal_bias="0.217"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
@@ -26,9 +29,12 @@
         android:id="@+id/taskFragmentBody"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="32dp"
+        android:layout_marginStart="24dp"
+        android:layout_marginTop="36dp"
         android:text="Task Body"
+        android:textAlignment="textStart"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.213"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/taskFragmentName" />
 
@@ -36,10 +42,13 @@
         android:id="@+id/taskFragmentState"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="32dp"
+        android:layout_marginStart="24dp"
+        android:layout_marginTop="36dp"
         android:text="Task State"
+        android:textAlignment="textStart"
         android:textStyle="italic"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.213"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/taskFragmentBody" />
 
