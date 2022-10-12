@@ -84,12 +84,6 @@ public class MainActivity extends AppCompatActivity {
         createLoginButton();
  }
 
-    private void createImageButton(){
-        findViewById(R.id.mainActivityImageButton).setOnClickListener(v -> {
-            Intent goToAddImageActivity = new Intent(MainActivity.this, ImageActivity.class);
-            startActivity(goToAddImageActivity);
-        });
-    }
 
     @Override
     protected void onResume(){

@@ -37,33 +37,33 @@ public class ImageActivity extends AppCompatActivity {
         activityResultLauncher = getImagePickingActivityResultLauncher();
 
         createAddImageButton();
-        createSaveButton();
+//        createSaveImageButton();
     }
 
-    private void createSaveButton(){
-        findViewById(R.id.imageActivitySaveButton).setOnClickListener(v -> {
-            saveTeamImage(s3ImageKey);
-        });
-    }
-
-    private void saveTeamImage(String s3key){
-        Team teamToSave = Team.builder()
-                .name("New Team")
-                .productImageS3Key(s3key)
-                .build();
-
-        Amplify.API.mutate(
-                ModelMutation.create(teamToSave),
-                success -> Log.i(TAG, "Successfully created new team with s3ImageKey: " + s3key),
-                failure -> Log.i(TAG, "Failed to create a new team with message: " + failure.getMessage())
-        );
-    }
+//    private void createSaveImageButton(){
+//        findViewById(R.id.imageActivityAddButton).setOnClickListener(b -> {
+//            saveTeamImage(s3ImageKey);
+//        });
+//    }
 
     private void createAddImageButton(){
         findViewById(R.id.imageActivityAddButton).setOnClickListener(button -> {
             launchImageSelectionIntent();
         });
     }
+
+//    private void saveTeamImage(String s3key){
+//        Team teamToSave = Team.builder()
+//                .name("New Team")
+//                .productImageS3Key(s3key)
+//                .build();
+//
+//        Amplify.API.mutate(
+//                ModelMutation.create(teamToSave),
+//                success -> Log.i(TAG, "Successfully created new team with s3ImageKey: " + s3key),
+//                failure -> Log.i(TAG, "Failed to create a new team with message: " + failure.getMessage())
+//        );
+//    }
 
     private void launchImageSelectionIntent(){
         Intent imageFilePickingIntent = new Intent(Intent.ACTION_GET_CONTENT);

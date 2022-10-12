@@ -26,11 +26,13 @@
         android:id="@+id/settingsActivitySaveButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginTop="72dp"
         android:layout_marginBottom="64dp"
         android:text="@string/save"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/settingsActivityAddImageButton" />
 
     <TextView
         android:id="@+id/settingsActivityUsernameTextView"
@@ -64,5 +66,16 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/settingsActivityTeamTextView"
         tools:ignore="SpeakableTextPresentCheck" />
+
+    <Button
+        android:id="@+id/settingsActivityAddImageButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="125dp"
+        android:text="Add Team Image"
+        android:textAlignment="center"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/settingsActivityTeamSpinner" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
