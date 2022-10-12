@@ -1,7 +1,5 @@
 package com.mnmason86.taskmaster.activities;
 
-//import static com.mnmason86.taskmaster.TaskAmplifyApplication.Tag;
-
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -14,17 +12,17 @@ import android.util.Log;
 import android.widget.Button;
 import android.widget.TextView;
 
-//import com.amplifyframework.api.graphql.model.ModelQuery;
-//import com.amplifyframework.auth.AuthUser;
-//import com.amplifyframework.core.Amplify;
-import com.amplifyframework.api.graphql.model.ModelMutation;
 import com.amplifyframework.api.graphql.model.ModelQuery;
 import com.amplifyframework.core.Amplify;
-import com.amplifyframework.datastore.generated.model.Team;
+
 import com.mnmason86.taskmaster.R;
 import com.mnmason86.taskmaster.adapters.TaskListRecyclerViewAdapter;
 import com.amplifyframework.datastore.generated.model.Task;
 
+import java.io.BufferedWriter;
+import java.io.File;
+import java.io.FileWriter;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -50,6 +48,32 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+        // manual upload to S3
+
+//        String testFileName = "testFileName";
+//        File testFile = new File(getApplicationContext().getFilesDir(), testFileName);
+//
+//        try {
+//            BufferedWriter testFileBufferedWriter = new BufferedWriter(new FileWriter(testFile));
+//            testFileBufferedWriter.append("Some test text here");
+//            testFileBufferedWriter.close();
+//        } catch (IOException ioe){
+//            Log.e(TAG, "Could not write file locally with filename: " + testFileName);
+//        }
+//
+//        String testFileS3Key = "someFileOnS3.txt";
+//
+//        Amplify.Storage.uploadFile(
+//                testFileS3Key,
+//                testFile,
+//                success -> {
+//                    Log.i(TAG, "S3 upload successful. Key is: " + success.getKey());
+//                },
+//                failure -> {
+//                    Log.i(TAG, "S3 upload failed. " + failure.getMessage());
+//                }
+//        );
+
         sharedPreferences = PreferenceManager.getDefaultSharedPreferences(this);
         taskList = new ArrayList<>();
         setUpTaskRecyclerView();
@@ -59,6 +83,13 @@ public class MainActivity extends AppCompatActivity {
         createSignUpButton();
         createLoginButton();
  }
+
+    private void createImageButton(){
+        findViewById(R.id.mainActivityImageButton).setOnClickListener(v -> {
+            Intent goToAddImageActivity = new Intent(MainActivity.this, ImageActivity.class);
+            startActivity(goToAddImageActivity);
+        });
+    }
 
     @Override
     protected void onResume(){
