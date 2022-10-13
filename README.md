@@ -142,6 +142,15 @@ Added Espresso testing to verify the following:
 
 ![Settings Page](screenshots/taskmaster_settings3.png)
 
+## Lab 34
+
+### Features
+
+- Release app to the Google Play store
+- Currently in review 10/10/22
+
+![Play Store Review](screenshots/GooglePlay_releaseSS1.png)
+
 ## Lab 36 10/4/22
 
 ### Features
