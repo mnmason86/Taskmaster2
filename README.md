@@ -170,7 +170,13 @@ Added Espresso testing to verify the following:
 
 ## Screenshots
 
+![Settings Page](screenshots/taskmaster_settings8.png)
 
+![Add Team Page](screenshots/taskmaster_addteam8.png)
+
+![Image Downloads](screenshots/taskmaster_imgdl8.png)
+
+![Add Team Page with Selected Image](screenshots/taskmaster_teamimg8.png)
 
 ### Taskmaster App Attributions
 
