@@ -48,31 +48,6 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        // manual upload to S3
-
-//        String testFileName = "testFileName";
-//        File testFile = new File(getApplicationContext().getFilesDir(), testFileName);
-//
-//        try {
-//            BufferedWriter testFileBufferedWriter = new BufferedWriter(new FileWriter(testFile));
-//            testFileBufferedWriter.append("Some test text here");
-//            testFileBufferedWriter.close();
-//        } catch (IOException ioe){
-//            Log.e(TAG, "Could not write file locally with filename: " + testFileName);
-//        }
-//
-//        String testFileS3Key = "someFileOnS3.txt";
-//
-//        Amplify.Storage.uploadFile(
-//                testFileS3Key,
-//                testFile,
-//                success -> {
-//                    Log.i(TAG, "S3 upload successful. Key is: " + success.getKey());
-//                },
-//                failure -> {
-//                    Log.i(TAG, "S3 upload failed. " + failure.getMessage());
-//                }
-//        );
 
         sharedPreferences = PreferenceManager.getDefaultSharedPreferences(this);
         taskList = new ArrayList<>();

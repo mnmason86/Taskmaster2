@@ -10,10 +10,12 @@ import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.database.Cursor;
 import android.graphics.BitmapFactory;
+import android.media.Image;
 import android.net.Uri;
 import android.os.Bundle;
 import android.provider.OpenableColumns;
 import android.util.Log;
+import android.widget.EditText;
 import android.widget.ImageView;
 
 import com.amplifyframework.api.graphql.model.ModelMutation;
@@ -37,14 +39,17 @@ public class ImageActivity extends AppCompatActivity {
         activityResultLauncher = getImagePickingActivityResultLauncher();
 
         createAddImageButton();
-//        createSaveImageButton();
+        createSaveImageButton();
     }
 
-//    private void createSaveImageButton(){
-//        findViewById(R.id.imageActivityAddButton).setOnClickListener(b -> {
-//            saveTeamImage(s3ImageKey);
-//        });
-//    }
+    private void createSaveImageButton(){
+        findViewById(R.id.imageActivitySaveButton).setOnClickListener(b -> {
+            saveTeam(s3ImageKey);
+
+            Intent goToSettingsActivity = new Intent(ImageActivity.this, SettingsActivity.class);
+            startActivity(goToSettingsActivity);
+        });
+    }
 
     private void createAddImageButton(){
         findViewById(R.id.imageActivityAddButton).setOnClickListener(button -> {
@@ -52,18 +57,19 @@ public class ImageActivity extends AppCompatActivity {
         });
     }
 
-//    private void saveTeamImage(String s3key){
-//        Team teamToSave = Team.builder()
-//                .name("New Team")
-//                .productImageS3Key(s3key)
-//                .build();
-//
-//        Amplify.API.mutate(
-//                ModelMutation.create(teamToSave),
-//                success -> Log.i(TAG, "Successfully created new team with s3ImageKey: " + s3key),
-//                failure -> Log.i(TAG, "Failed to create a new team with message: " + failure.getMessage())
-//        );
-//    }
+    private void saveTeam(String s3key){
+        String newTeamName = ((EditText) findViewById(R.id.imageActivityTeamNameEditText)).getText().toString();
+        Team teamToSave = Team.builder()
+                .name(newTeamName)
+                .productImageS3Key(s3key)
+                .build();
+
+        Amplify.API.mutate(
+                ModelMutation.create(teamToSave),
+                success -> Log.i(TAG, "Successfully created new team with s3ImageKey: " + s3key),
+                failure -> Log.i(TAG, "Failed to create a new team with message: " + failure.getMessage())
+        );
+    }
 
     private void launchImageSelectionIntent(){
         Intent imageFilePickingIntent = new Intent(Intent.ACTION_GET_CONTENT);
