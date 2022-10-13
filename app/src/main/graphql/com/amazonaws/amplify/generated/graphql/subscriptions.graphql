@@ -3,6 +3,7 @@ subscription OnCreateTeam {
   onCreateTeam {
     id
     name
+    productImageS3Key
     tasks {
       items {
         id
@@ -24,6 +25,7 @@ subscription OnUpdateTeam {
   onUpdateTeam {
     id
     name
+    productImageS3Key
     tasks {
       items {
         id
@@ -45,6 +47,7 @@ subscription OnDeleteTeam {
   onDeleteTeam {
     id
     name
+    productImageS3Key
     tasks {
       items {
         id
@@ -73,6 +76,7 @@ subscription OnCreateTask {
     team {
       id
       name
+      productImageS3Key
       tasks {
         nextToken
       }
@@ -94,6 +98,7 @@ subscription OnUpdateTask {
     team {
       id
       name
+      productImageS3Key
       tasks {
         nextToken
       }
@@ -115,6 +120,7 @@ subscription OnDeleteTask {
     team {
       id
       name
+      productImageS3Key
       tasks {
         nextToken
       }

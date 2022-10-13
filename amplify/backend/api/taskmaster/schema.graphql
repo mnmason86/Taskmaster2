@@ -5,6 +5,7 @@ input AMPLIFY { globalAuthRule: AuthRule = { allow: public } } # FOR TESTING ONL
 type Team @model {
     id: ID!
     name: String!
+    productImageS3Key: String
     tasks: [Task] @hasMany(indexName: "byTeam", fields:["id"])
 }
 

@@ -50,7 +50,7 @@ public class SettingsActivity extends AppCompatActivity {
         teamNames = new ArrayList<>();
         setUpTeamSpinner();
         createSaveButton();
-
+        createImageActivityButton();
     }
 
     @Override
@@ -87,6 +87,13 @@ public class SettingsActivity extends AppCompatActivity {
             Intent goToMainActivity = new Intent(SettingsActivity.this, MainActivity.class);
             goToMainActivity.putExtra(SettingsActivity.USER_NAME_TAG, nameInput);
             startActivity(goToMainActivity);
+        });
+    }
+
+    private void createImageActivityButton(){
+        findViewById(R.id.settingsActivityAddImageButton).setOnClickListener(v -> {
+            Intent goToImageActivity = new Intent(SettingsActivity.this, ImageActivity.class);
+            startActivity(goToImageActivity);
         });
     }
 

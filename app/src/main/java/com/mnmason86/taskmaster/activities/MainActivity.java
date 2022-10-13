@@ -1,7 +1,5 @@
 package com.mnmason86.taskmaster.activities;
 
-//import static com.mnmason86.taskmaster.TaskAmplifyApplication.Tag;
-
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -14,17 +12,17 @@ import android.util.Log;
 import android.widget.Button;
 import android.widget.TextView;
 
-//import com.amplifyframework.api.graphql.model.ModelQuery;
-//import com.amplifyframework.auth.AuthUser;
-//import com.amplifyframework.core.Amplify;
-import com.amplifyframework.api.graphql.model.ModelMutation;
 import com.amplifyframework.api.graphql.model.ModelQuery;
 import com.amplifyframework.core.Amplify;
-import com.amplifyframework.datastore.generated.model.Team;
+
 import com.mnmason86.taskmaster.R;
 import com.mnmason86.taskmaster.adapters.TaskListRecyclerViewAdapter;
 import com.amplifyframework.datastore.generated.model.Task;
 
+import java.io.BufferedWriter;
+import java.io.File;
+import java.io.FileWriter;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -50,6 +48,7 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+
         sharedPreferences = PreferenceManager.getDefaultSharedPreferences(this);
         taskList = new ArrayList<>();
         setUpTaskRecyclerView();
@@ -59,6 +58,7 @@ public class MainActivity extends AppCompatActivity {
         createSignUpButton();
         createLoginButton();
  }
+
 
     @Override
     protected void onResume(){

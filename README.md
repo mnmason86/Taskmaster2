@@ -151,7 +151,7 @@ Added Espresso testing to verify the following:
 
 ![Play Store Review](screenshots/GooglePlay_releaseSS1.png)
 
-## Lab36 10/4/22
+## Lab 36 10/4/22
 
 ### Features
 
@@ -168,6 +168,24 @@ Added Espresso testing to verify the following:
 ![Sign Up Page](screenshots/taskmaster_signup7.png)
 
 ![Log In Page](screenshots/taskmaster_login7.png)
+
+## Lab 37 10/12/22
+
+## Features
+
+- AWS S3 integrated to allow users to save downloaded images from the device to the Taskmaster app
+- Settings Activity contains a button to direct users to the Image Activity, where users can create a new Team with a selected image
+- Image Activity contains an EditText field for a new Team name, an 'Add Image Button', and a 'Save Team' button, which saves the newly crated Team and redirects the user back to the Settings page.
+
+## Screenshots
+
+![Settings Page](screenshots/taskmaster_settings8.png)
+
+![Add Team Page](screenshots/taskmaster_addteam8.png)
+
+![Image Downloads](screenshots/taskmaster_imgdl8.png)
+
+![Add Team Page with Selected Image](screenshots/taskmaster_teamimg8.png)
 
 ### Taskmaster App Attributions
 

@@ -3,6 +3,7 @@ query GetTeam($id: ID!) {
   getTeam(id: $id) {
     id
     name
+    productImageS3Key
     tasks {
       items {
         id
@@ -29,6 +30,7 @@ query ListTeams(
     items {
       id
       name
+      productImageS3Key
       tasks {
         nextToken
       }
@@ -49,6 +51,7 @@ query GetTask($id: ID!) {
     team {
       id
       name
+      productImageS3Key
       tasks {
         nextToken
       }
@@ -75,6 +78,7 @@ query ListTasks(
       team {
         id
         name
+        productImageS3Key
         createdAt
         updatedAt
       }
