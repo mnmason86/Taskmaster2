@@ -14,6 +14,7 @@ query GetTeam($id: ID!) {
         dateCreated
         latitude
         longitude
+        location
         createdAt
         updatedAt
       }
@@ -62,6 +63,7 @@ query GetTask($id: ID!) {
     }
     latitude
     longitude
+    location
     createdAt
     updatedAt
   }
@@ -88,6 +90,7 @@ query ListTasks(
       }
       latitude
       longitude
+      location
       createdAt
       updatedAt
     }

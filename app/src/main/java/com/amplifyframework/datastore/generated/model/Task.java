@@ -30,6 +30,7 @@ public final class Task implements Model {
   public static final QueryField TEAM = field("Task", "teamID");
   public static final QueryField LATITUDE = field("Task", "latitude");
   public static final QueryField LONGITUDE = field("Task", "longitude");
+  public static final QueryField LOCATION = field("Task", "location");
   private final @ModelField(targetType="ID", isRequired = true) String id;
   private final @ModelField(targetType="String", isRequired = true) String name;
   private final @ModelField(targetType="String", isRequired = true) String body;
@@ -38,6 +39,7 @@ public final class Task implements Model {
   private final @ModelField(targetType="Team") @BelongsTo(targetName = "teamID", type = Team.class) Team team;
   private final @ModelField(targetType="String") String latitude;
   private final @ModelField(targetType="String") String longitude;
+  private final @ModelField(targetType="String") String location;
   private @ModelField(targetType="AWSDateTime", isReadOnly = true) Temporal.DateTime createdAt;
   private @ModelField(targetType="AWSDateTime", isReadOnly = true) Temporal.DateTime updatedAt;
   public String getId() {
@@ -72,6 +74,10 @@ public final class Task implements Model {
       return longitude;
   }
   
+  public String getLocation() {
+      return location;
+  }
+  
   public Temporal.DateTime getCreatedAt() {
       return createdAt;
   }
@@ -80,7 +86,7 @@ public final class Task implements Model {
       return updatedAt;
   }
   
-  private Task(String id, String name, String body, TaskStateEnum state, Temporal.DateTime dateCreated, Team team, String latitude, String longitude) {
+  private Task(String id, String name, String body, TaskStateEnum state, Temporal.DateTime dateCreated, Team team, String latitude, String longitude, String location) {
     this.id = id;
     this.name = name;
     this.body = body;
@@ -89,6 +95,7 @@ public final class Task implements Model {
     this.team = team;
     this.latitude = latitude;
     this.longitude = longitude;
+    this.location = location;
   }
   
   @Override
@@ -107,6 +114,7 @@ public final class Task implements Model {
               ObjectsCompat.equals(getTeam(), task.getTeam()) &&
               ObjectsCompat.equals(getLatitude(), task.getLatitude()) &&
               ObjectsCompat.equals(getLongitude(), task.getLongitude()) &&
+              ObjectsCompat.equals(getLocation(), task.getLocation()) &&
               ObjectsCompat.equals(getCreatedAt(), task.getCreatedAt()) &&
               ObjectsCompat.equals(getUpdatedAt(), task.getUpdatedAt());
       }
@@ -123,6 +131,7 @@ public final class Task implements Model {
       .append(getTeam())
       .append(getLatitude())
       .append(getLongitude())
+      .append(getLocation())
       .append(getCreatedAt())
       .append(getUpdatedAt())
       .toString()
@@ -141,6 +150,7 @@ public final class Task implements Model {
       .append("team=" + String.valueOf(getTeam()) + ", ")
       .append("latitude=" + String.valueOf(getLatitude()) + ", ")
       .append("longitude=" + String.valueOf(getLongitude()) + ", ")
+      .append("location=" + String.valueOf(getLocation()) + ", ")
       .append("createdAt=" + String.valueOf(getCreatedAt()) + ", ")
       .append("updatedAt=" + String.valueOf(getUpdatedAt()))
       .append("}")
@@ -168,6 +178,7 @@ public final class Task implements Model {
       null,
       null,
       null,
+      null,
       null
     );
   }
@@ -180,7 +191,8 @@ public final class Task implements Model {
       dateCreated,
       team,
       latitude,
-      longitude);
+      longitude,
+      location);
   }
   public interface NameStep {
     BodyStep name(String name);
@@ -204,6 +216,7 @@ public final class Task implements Model {
     BuildStep team(Team team);
     BuildStep latitude(String latitude);
     BuildStep longitude(String longitude);
+    BuildStep location(String location);
   }
   
 
@@ -216,6 +229,7 @@ public final class Task implements Model {
     private Team team;
     private String latitude;
     private String longitude;
+    private String location;
     @Override
      public Task build() {
         String id = this.id != null ? this.id : UUID.randomUUID().toString();
@@ -228,7 +242,8 @@ public final class Task implements Model {
           dateCreated,
           team,
           latitude,
-          longitude);
+          longitude,
+          location);
     }
     
     @Override
@@ -276,6 +291,12 @@ public final class Task implements Model {
         return this;
     }
     
+    @Override
+     public BuildStep location(String location) {
+        this.location = location;
+        return this;
+    }
+    
     /**
      * @param id id
      * @return Current Builder instance, for fluent method chaining
@@ -288,7 +309,7 @@ public final class Task implements Model {
   
 
   public final class CopyOfBuilder extends Builder {
-    private CopyOfBuilder(String id, String name, String body, TaskStateEnum state, Temporal.DateTime dateCreated, Team team, String latitude, String longitude) {
+    private CopyOfBuilder(String id, String name, String body, TaskStateEnum state, Temporal.DateTime dateCreated, Team team, String latitude, String longitude, String location) {
       super.id(id);
       super.name(name)
         .body(body)
@@ -296,7 +317,8 @@ public final class Task implements Model {
         .dateCreated(dateCreated)
         .team(team)
         .latitude(latitude)
-        .longitude(longitude);
+        .longitude(longitude)
+        .location(location);
     }
     
     @Override
@@ -332,6 +354,11 @@ public final class Task implements Model {
     @Override
      public CopyOfBuilder longitude(String longitude) {
       return (CopyOfBuilder) super.longitude(longitude);
+    }
+    
+    @Override
+     public CopyOfBuilder location(String location) {
+      return (CopyOfBuilder) super.location(location);
     }
   }
   

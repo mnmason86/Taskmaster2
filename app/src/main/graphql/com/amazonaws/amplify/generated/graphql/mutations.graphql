@@ -17,6 +17,7 @@ mutation CreateTeam(
         dateCreated
         latitude
         longitude
+        location
         createdAt
         updatedAt
       }
@@ -44,6 +45,7 @@ mutation UpdateTeam(
         dateCreated
         latitude
         longitude
+        location
         createdAt
         updatedAt
       }
@@ -71,6 +73,7 @@ mutation DeleteTeam(
         dateCreated
         latitude
         longitude
+        location
         createdAt
         updatedAt
       }
@@ -103,6 +106,7 @@ mutation CreateTask(
     }
     latitude
     longitude
+    location
     createdAt
     updatedAt
   }
@@ -130,6 +134,7 @@ mutation UpdateTask(
     }
     latitude
     longitude
+    location
     createdAt
     updatedAt
   }
@@ -157,6 +162,7 @@ mutation DeleteTask(
     }
     latitude
     longitude
+    location
     createdAt
     updatedAt
   }

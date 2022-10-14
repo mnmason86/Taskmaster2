@@ -13,7 +13,7 @@
         android:layout_width="111dp"
         android:layout_height="25dp"
         android:layout_marginTop="100dp"
-        android:text="Task Details"
+        android:text="Task Title"
         android:textAlignment="center"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
@@ -24,7 +24,7 @@
         android:id="@+id/taskDetailBodyPlainText"
         android:layout_width="246dp"
         android:layout_height="41dp"
-        android:layout_marginTop="92dp"
+        android:layout_marginTop="55dp"
         android:text="Task Body"
         android:textAlignment="center"
         app:layout_constraintEnd_toEndOf="parent"
@@ -36,10 +36,23 @@
         android:id="@+id/taskDetailStateTextView"
         android:layout_width="124dp"
         android:layout_height="26dp"
-        android:layout_marginTop="99dp"
+        android:layout_marginTop="60dp"
         android:text="Task State"
         android:textAlignment="center"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/taskDetailBodyPlainText" />
+
+    <TextView
+        android:id="@+id/taskDetailLocationTextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="61dp"
+        android:text="Creation Location"
+        android:textAlignment="center"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/taskDetailStateTextView" />
 </androidx.constraintlayout.widget.ConstraintLayout>

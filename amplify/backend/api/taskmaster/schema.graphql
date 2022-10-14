@@ -19,6 +19,7 @@ type Task @model{
     team: Team @belongsTo(fields: ["teamID"])
     latitude: String
     longitude: String
+    location: String
 }
 
 enum TaskStateEnum {
