@@ -12,6 +12,8 @@ query GetTeam($id: ID!) {
         body
         state
         dateCreated
+        latitude
+        longitude
         createdAt
         updatedAt
       }
@@ -58,6 +60,8 @@ query GetTask($id: ID!) {
       createdAt
       updatedAt
     }
+    latitude
+    longitude
     createdAt
     updatedAt
   }
@@ -82,6 +86,8 @@ query ListTasks(
         createdAt
         updatedAt
       }
+      latitude
+      longitude
       createdAt
       updatedAt
     }

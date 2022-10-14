@@ -28,12 +28,16 @@ public final class Task implements Model {
   public static final QueryField STATE = field("Task", "state");
   public static final QueryField DATE_CREATED = field("Task", "dateCreated");
   public static final QueryField TEAM = field("Task", "teamID");
+  public static final QueryField LATITUDE = field("Task", "latitude");
+  public static final QueryField LONGITUDE = field("Task", "longitude");
   private final @ModelField(targetType="ID", isRequired = true) String id;
   private final @ModelField(targetType="String", isRequired = true) String name;
   private final @ModelField(targetType="String", isRequired = true) String body;
   private final @ModelField(targetType="TaskStateEnum", isRequired = true) TaskStateEnum state;
   private final @ModelField(targetType="AWSDateTime") Temporal.DateTime dateCreated;
   private final @ModelField(targetType="Team") @BelongsTo(targetName = "teamID", type = Team.class) Team team;
+  private final @ModelField(targetType="String") String latitude;
+  private final @ModelField(targetType="String") String longitude;
   private @ModelField(targetType="AWSDateTime", isReadOnly = true) Temporal.DateTime createdAt;
   private @ModelField(targetType="AWSDateTime", isReadOnly = true) Temporal.DateTime updatedAt;
   public String getId() {
@@ -60,6 +64,14 @@ public final class Task implements Model {
       return team;
   }
   
+  public String getLatitude() {
+      return latitude;
+  }
+  
+  public String getLongitude() {
+      return longitude;
+  }
+  
   public Temporal.DateTime getCreatedAt() {
       return createdAt;
   }
@@ -68,13 +80,15 @@ public final class Task implements Model {
       return updatedAt;
   }
   
-  private Task(String id, String name, String body, TaskStateEnum state, Temporal.DateTime dateCreated, Team team) {
+  private Task(String id, String name, String body, TaskStateEnum state, Temporal.DateTime dateCreated, Team team, String latitude, String longitude) {
     this.id = id;
     this.name = name;
     this.body = body;
     this.state = state;
     this.dateCreated = dateCreated;
     this.team = team;
+    this.latitude = latitude;
+    this.longitude = longitude;
   }
   
   @Override
@@ -91,6 +105,8 @@ public final class Task implements Model {
               ObjectsCompat.equals(getState(), task.getState()) &&
               ObjectsCompat.equals(getDateCreated(), task.getDateCreated()) &&
               ObjectsCompat.equals(getTeam(), task.getTeam()) &&
+              ObjectsCompat.equals(getLatitude(), task.getLatitude()) &&
+              ObjectsCompat.equals(getLongitude(), task.getLongitude()) &&
               ObjectsCompat.equals(getCreatedAt(), task.getCreatedAt()) &&
               ObjectsCompat.equals(getUpdatedAt(), task.getUpdatedAt());
       }
@@ -105,6 +121,8 @@ public final class Task implements Model {
       .append(getState())
       .append(getDateCreated())
       .append(getTeam())
+      .append(getLatitude())
+      .append(getLongitude())
       .append(getCreatedAt())
       .append(getUpdatedAt())
       .toString()
@@ -121,6 +139,8 @@ public final class Task implements Model {
       .append("state=" + String.valueOf(getState()) + ", ")
       .append("dateCreated=" + String.valueOf(getDateCreated()) + ", ")
       .append("team=" + String.valueOf(getTeam()) + ", ")
+      .append("latitude=" + String.valueOf(getLatitude()) + ", ")
+      .append("longitude=" + String.valueOf(getLongitude()) + ", ")
       .append("createdAt=" + String.valueOf(getCreatedAt()) + ", ")
       .append("updatedAt=" + String.valueOf(getUpdatedAt()))
       .append("}")
@@ -146,6 +166,8 @@ public final class Task implements Model {
       null,
       null,
       null,
+      null,
+      null,
       null
     );
   }
@@ -156,7 +178,9 @@ public final class Task implements Model {
       body,
       state,
       dateCreated,
-      team);
+      team,
+      latitude,
+      longitude);
   }
   public interface NameStep {
     BodyStep name(String name);
@@ -178,6 +202,8 @@ public final class Task implements Model {
     BuildStep id(String id);
     BuildStep dateCreated(Temporal.DateTime dateCreated);
     BuildStep team(Team team);
+    BuildStep latitude(String latitude);
+    BuildStep longitude(String longitude);
   }
   
 
@@ -188,6 +214,8 @@ public final class Task implements Model {
     private TaskStateEnum state;
     private Temporal.DateTime dateCreated;
     private Team team;
+    private String latitude;
+    private String longitude;
     @Override
      public Task build() {
         String id = this.id != null ? this.id : UUID.randomUUID().toString();
@@ -198,7 +226,9 @@ public final class Task implements Model {
           body,
           state,
           dateCreated,
-          team);
+          team,
+          latitude,
+          longitude);
     }
     
     @Override
@@ -234,6 +264,18 @@ public final class Task implements Model {
         return this;
     }
     
+    @Override
+     public BuildStep latitude(String latitude) {
+        this.latitude = latitude;
+        return this;
+    }
+    
+    @Override
+     public BuildStep longitude(String longitude) {
+        this.longitude = longitude;
+        return this;
+    }
+    
     /**
      * @param id id
      * @return Current Builder instance, for fluent method chaining
@@ -246,13 +288,15 @@ public final class Task implements Model {
   
 
   public final class CopyOfBuilder extends Builder {
-    private CopyOfBuilder(String id, String name, String body, TaskStateEnum state, Temporal.DateTime dateCreated, Team team) {
+    private CopyOfBuilder(String id, String name, String body, TaskStateEnum state, Temporal.DateTime dateCreated, Team team, String latitude, String longitude) {
       super.id(id);
       super.name(name)
         .body(body)
         .state(state)
         .dateCreated(dateCreated)
-        .team(team);
+        .team(team)
+        .latitude(latitude)
+        .longitude(longitude);
     }
     
     @Override
@@ -278,6 +322,16 @@ public final class Task implements Model {
     @Override
      public CopyOfBuilder team(Team team) {
       return (CopyOfBuilder) super.team(team);
+    }
+    
+    @Override
+     public CopyOfBuilder latitude(String latitude) {
+      return (CopyOfBuilder) super.latitude(latitude);
+    }
+    
+    @Override
+     public CopyOfBuilder longitude(String longitude) {
+      return (CopyOfBuilder) super.longitude(longitude);
     }
   }
   
