@@ -2,32 +2,33 @@ package com.mnmason86.taskmaster.activities;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.Manifest;
 import android.content.Intent;
 import android.os.Bundle;
-import android.preference.PreferenceManager;
+
 import android.util.Log;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Spinner;
 
-//import com.amplifyframework.api.graphql.model.ModelMutation;
-//import com.amplifyframework.api.graphql.model.ModelQuery;
-//import com.amplifyframework.core.Amplify;
+
 import com.amplifyframework.api.graphql.model.ModelMutation;
 import com.amplifyframework.api.graphql.model.ModelQuery;
 import com.amplifyframework.core.Amplify;
 import com.amplifyframework.core.model.temporal.Temporal;
 import com.amplifyframework.datastore.generated.model.TaskStateEnum;
+import com.google.android.gms.location.FusedLocationProviderClient;
+import com.google.android.gms.location.LocationServices;
 import com.mnmason86.taskmaster.R;
 import com.amplifyframework.datastore.generated.model.*;
-//import com.amplifyframework.core.model.temporal.Temporal;
 
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 import java.util.concurrent.CompletableFuture;
 import java.util.concurrent.ExecutionException;
+
 
 public class AddTaskActivity extends AppCompatActivity {
     public static final String TAG = "AddTaskActivity";
@@ -36,6 +37,7 @@ public class AddTaskActivity extends AppCompatActivity {
 
     ArrayAdapter<String> adapter;
     CompletableFuture<List<Team>> teamFuture = null;
+    private FusedLocationProviderClient fusedLocationClient;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -43,6 +45,9 @@ public class AddTaskActivity extends AppCompatActivity {
         setContentView(R.layout.activity_add_task);
         teamFuture = new CompletableFuture<>();
         teamNames = new ArrayList<>();
+
+        requestPermissions(new String[]{Manifest.permission.ACCESS_FINE_LOCATION}, 1);
+        fusedLocationClient = LocationServices.getFusedLocationProviderClient(getApplicationContext());
 
         setUpTaskStateSpinner();
         setUpTeamSpinner();
