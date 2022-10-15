@@ -49,12 +49,17 @@ public class TaskListRecyclerViewAdapter extends RecyclerView.Adapter<TaskListRe
         String taskState = taskList.get(position).getState().toString();
         taskFragmentTextViewState.setText(taskState);
 
+        TextView taskFragmentTextViewLocation = holder.itemView.findViewById(R.id.taskFragmentLocation);
+        String taskLocation = taskList.get(position).getLocation();
+        taskFragmentTextViewLocation.setText(taskLocation);
+
         View taskViewHolder = holder.itemView;
         taskViewHolder.setOnClickListener(view -> {
             Intent goToTaskDetailPage = new Intent(callingActivity, TaskDetailActivity.class);
             goToTaskDetailPage.putExtra(MainActivity.TASK_NAME_EXTRA_TAG, taskName);
             goToTaskDetailPage.putExtra(MainActivity.TASK_BODY_EXTRA_TAG, taskBody);
             goToTaskDetailPage.putExtra(MainActivity.TASK_STATE_EXTRA_TAG, taskState);
+            goToTaskDetailPage.putExtra(MainActivity.TASK_LOCATION_EXTRA_TAG, taskLocation);
             callingActivity.startActivity(goToTaskDetailPage);
         });
     }

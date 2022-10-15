@@ -17,6 +17,9 @@ type Task @model{
     state: TaskStateEnum!
     dateCreated: AWSDateTime
     team: Team @belongsTo(fields: ["teamID"])
+    latitude: String
+    longitude: String
+    location: String
 }
 
 enum TaskStateEnum {
