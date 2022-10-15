@@ -6,6 +6,7 @@ import androidx.core.app.ActivityCompat;
 import android.Manifest;
 import android.content.Intent;
 import android.content.pm.PackageManager;
+
 import android.location.Geocoder;
 import android.os.Bundle;
 
@@ -19,10 +20,9 @@ import android.widget.Spinner;
 import com.amplifyframework.api.graphql.model.ModelMutation;
 import com.amplifyframework.api.graphql.model.ModelQuery;
 import com.amplifyframework.core.Amplify;
-import com.amplifyframework.core.model.temporal.Temporal;
 import com.amplifyframework.datastore.generated.model.TaskStateEnum;
+
 import com.google.android.gms.location.FusedLocationProviderClient;
-import com.google.android.gms.location.Geofence;
 import com.google.android.gms.location.LocationServices;
 import com.mnmason86.taskmaster.R;
 import com.amplifyframework.datastore.generated.model.*;
@@ -43,7 +43,7 @@ public class AddTaskActivity extends AppCompatActivity {
 
     ArrayAdapter<String> adapter;
     CompletableFuture<List<Team>> teamFuture = null;
-    private FusedLocationProviderClient fusedLocationClient = null;
+    private FusedLocationProviderClient fusedLocationClient;
     Geocoder geocoder;
 
     @Override
@@ -134,11 +134,15 @@ public class AddTaskActivity extends AppCompatActivity {
                 return;
             }
             fusedLocationClient.getLastLocation().addOnSuccessListener(location -> {
-                Log.i(TAG, "Latitude: " + location.getLatitude());
-                Log.i(TAG, "Longitude: " + location.getLongitude());
+                if(location == null){
+                    Log.e(TAG, "Location callback was null");
+                }
+
                 String lat = Double.toString(location.getLatitude());
                 String lon = Double.toString(location.getLongitude());
                 String taskLocation = "";
+                Log.i(TAG, "Latitude: " + location.getLatitude());
+                Log.i(TAG, "Longitude: " + location.getLongitude())
 
                 if (!lat.equals("") && !lon.equals("")){
                     try {
@@ -188,7 +192,7 @@ public class AddTaskActivity extends AppCompatActivity {
             Log.e(TAG, "This app does not have permission to access fine or coarse location");
             return;
         }
-        requestPermissions(new String[]{Manifest.permission.ACCESS_FINE_LOCATION}, 1);
+        requestPermissions(new String[]{Manifest.permission.ACCESS_FINE_LOCATION, Manifest.permission.ACCESS_COARSE_LOCATION}, 1);
         fusedLocationClient = LocationServices.getFusedLocationProviderClient(getApplicationContext());
         fusedLocationClient.flushLocations();
     }
