@@ -187,6 +187,23 @@ Added Espresso testing to verify the following:
 
 ![Add Team Page with Selected Image](screenshots/taskmaster_teamimg8.png)
 
+## Lab 38 10/15/22
+
+## Features
+
+- Access user's location with android location service
+- When a user adds a new task, their location is retrieved and included as part of the saved Task
+- In the Task Detail Activity, the location of a Task is displayed it it exists
+
+*issue*: upon clicking 'submit' from the Add Task activity, app crashes with error:
+`Attempt to invoke virtual method 'double android.location.Location.getLatitude()' on a null object reference`
+
+Location service is enabled on the emulated device, and allowed for the Taskmaster app.
+
+## Screenshots
+
+![Current Location Error](screenshots/location_error.png)
+
 ### Taskmaster App Attributions
 
 Alex White - demo code

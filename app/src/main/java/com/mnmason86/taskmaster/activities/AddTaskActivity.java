@@ -142,7 +142,7 @@ public class AddTaskActivity extends AppCompatActivity {
                 String lon = Double.toString(location.getLongitude());
                 String taskLocation = "";
                 Log.i(TAG, "Latitude: " + location.getLatitude());
-                Log.i(TAG, "Longitude: " + location.getLongitude())
+                Log.i(TAG, "Longitude: " + location.getLongitude());
 
                 if (!lat.equals("") && !lon.equals("")){
                     try {
